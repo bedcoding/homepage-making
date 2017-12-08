@@ -13,14 +13,6 @@
 	int endpage=((Integer)request.getAttribute("endpage")).intValue();
 %>
 
-<html>
-<head>
-	<title>MVC 게시판</title>
-</head>
-
-
-
-
 
 <html>
  <head>
@@ -417,6 +409,14 @@
 		</td>
 	</tr>
 </div>
+
+
+
+	<div class="board_btn2">	
+		<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo'"/>
+	</div> 
+
+
 </div> <!--END Board-->
 
 				</div>

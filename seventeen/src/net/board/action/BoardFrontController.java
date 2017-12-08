@@ -16,6 +16,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 		ActionForward forward = null;
 		Action action = null;
 
+		System.out.println("디버깅>>"+command);
 		if (command.equals("/BoardWrite.bo")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
