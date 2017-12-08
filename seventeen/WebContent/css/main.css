@@ -1,0 +1,158 @@
+@charset "utf-8";
+.black_bg {
+	position:absolute;
+	width:100%;
+	z-index:10000;
+	height:100%;
+	overflow:hidden;
+	background:url("../image/main/blank.png");
+	top:0;
+	left:0;
+}
+.black_bg div {
+	width:980px;
+	margin:0 auto;
+	padding-top:120px;
+}
+.m_youtube iframe {
+	z-index:-5;
+}
+.main_contents {
+	width:980px;
+	margin:0 auto;
+}
+.btn_go1 {
+	position:absolute;
+	bottom:30px;
+	left:210px;
+}
+.btn_go2 {
+	position:absolute;
+	bottom:30px;
+	right:210px;
+}
+
+/*coming soon page_20150831*/
+
+#wrap1{
+	width:100%;
+	min-width:980px;
+	height:100%;
+	background:url('../image/main/bg_06.jpg') no-repeat center center fixed;
+		-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+
+	position:fixed;
+	overflow:hidden;
+}
+.c_wrap1{
+	width:980px;
+	height:100%;
+}
+.c_box1{
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin-top:-230px;
+	margin-left:-270px;
+}
+.c_box1 ul{
+	width:100%;
+	margin:0 auto;
+	margin-top:25px;
+}
+.c_box1 ul li{
+	float:left;
+	margin-right:10px;
+	text-decoration: none;
+	color:#333;
+	font-size:1.167em;
+}
+.c_box1 ul li:last-child{
+	margin-right:0;
+}
+.c_box1 ul li a{
+	display:inline-block;
+	margin-right:10px;
+	text-decoration: none;
+	color:#333;
+	font-size:1.167em;
+
+}
+.c_box1 ul li:last-child a{
+	margin-right:0;
+}
+.com_foot{
+	clear:both;
+	width:100%;
+	margin-top:200px;
+}
+
+
+/*추석_20150924*/
+
+#wrap2{
+	width:100%;
+	min-width:980px;
+	height:100%;
+	background:url('../image/main/bg_06.jpg') no-repeat center center fixed;
+		-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+
+	position:fixed;
+	overflow:hidden;
+}
+#wrap2 .c_wrap1{
+	width:980px;
+	height:100%;
+}
+#wrap2 .c_box1{
+	position:fixed;
+	overflow:hidden;
+	top:50%;
+	left:50%;
+	margin-top:130px;
+	margin-left:-270px;
+}
+
+#wrap2 .c_box1 ul{
+	width:100%;
+	margin:0 auto;
+	margin-top:25px;
+}
+#wrap2 .c_box1 ul li{
+	float:left;
+	margin-right:10px;
+	text-decoration: none;
+	color:#333;
+	font-size:1.167em;
+}
+#wrap2 .c_box1 ul li:last-child{
+	margin-right:0;
+}
+#wrap2 .c_box1 ul li a{
+	display:inline-block;
+	margin-right:10px;
+	text-decoration: none;
+	color:#333;
+	font-size:1.167em;
+	background-color:#fff;
+
+}
+#wrap2 .c_box1 ul li:last-child a{
+	margin-right:0;
+}
+#wrap2 .com_foot{
+	clear:both;
+	width:100%;
+	margin-top:100px;
+	color:#8a8a8a;
+}

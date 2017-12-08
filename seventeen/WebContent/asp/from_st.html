@@ -1,0 +1,513 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ 
+<!-- Mirrored from seventeen-17.com/asp/from_st.asp by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Dec 2017 07:20:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <title> SEVENTEEN Official website </title>
+  <meta name="Author" content="minee">
+  <meta name="Publisher" content="MyelHub">
+  <meta name="Description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+  <link type="text/css" rel="stylesheet" href="../css/default.css" />
+  <script type="text/javascript" src="../../code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="../js/doorer.js"></script>
+ </head>
+
+ <!--게시판넣기-->
+<script language='javascript' type='text/javascript'>
+
+		//<![CDATA[
+		function doResize(id) 
+		{ 
+		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+		obj.height = obj.contentWindow.document.body.scrollHeight; 
+		}
+		//]]> 
+	</script>
+
+ <body
+ 
+ oncontextmenu="return false" ondragstart="return false" onselectstart="return false"
+ 
+ >
+ <!--Wrap-->
+ <div id="wrap">
+ 
+	<!--div class="black_bg">
+		<div class="black_bg_in">
+			<p><img src="../image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
+		</div>
+	</div-->
+
+		
+	<p class="m_top"><img src="../image/main/main_blue.jpg"border="0" alt=""></p>
+	<!--Header-->
+	<div id="header_new">
+		<ul class="m_menu">
+			<li><img src="../image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="../index.html"><img src="../image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<!--li><a href="../index_02.asp"><img src="../image/common/menu/menu01.jpg" border="0" alt=""></a></li-->
+			<li><a href="profile.html"><img src="../image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+			<!--li><a href="javascript:alert('준비중입니다');"><img src="../image/common/menu/menu02.jpg" border="0" alt=""></a></li-->
+			<li><a href="notice_new.html"><img src="../image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="schedule.html"><img src="../image/common/menu/menu04.jpg" border="0" alt=""></a></li>
+			<li><a href="vote_newff79.html?cate_idx=42"><img src="../image/common/menu/menu05.jpg" border="0" alt=""></a></li>
+			<!--li><a href="javascript:alert('준비중입니다');"><img src="../image/common/menu/menu05.jpg" border="0" alt=""></a></li-->
+			<li><a href="fanboard.html"><img src="../image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="from_st.html"><img src="../image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+			
+				<li><a href="login_new.html"><img src="../image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+			
+			<li><img src="../image/common/menu/menu_right.jpg"border="0" alt=""></li>
+		</ul>
+	</div><!--END Header-->
+	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
+
+<!--Container-->
+<div id="container_msub">
+	<div class="board_01" >
+		<p class="board_title"><img src="../image/sub/board_title03.jpg" border="0" alt="from seventeen"></p>
+		
+
+		
+<link type="text/css" rel="stylesheet" href="../css/board.css" />
+
+<script type="text/javascript">
+
+	$(function(){
+
+		$("#search_img").css("cursor","pointer").bind("click",function(){
+			/*
+			if (document.getElementById("types").value != ""){
+				if ($("#search_val").val() == ""){
+					alert("검색어를 입력해 주세요");
+					return;
+				}
+			}
+			*/
+			$("#search_Frm").submit();
+		})
+	})
+
+
+	function pwd_check(board_seq,i){
+		if ($("#chk_pwd"+i).val() == ""){
+			alert("비밀번호를 입력해 주세요");
+			$("#chk_pwd"+i).focus();
+			return;
+		}
+
+		$.ajax({
+			url: "/asp/board/general/_pwd_chk.asp",
+			data: {chk_pwd: $("#chk_pwd"+i).val(), board_seq : board_seq},
+			dataType: "json",
+			async: true,
+			error: function(xhr){
+						alert('에러발생!!');
+					},
+			success: function(data){
+								if (data == "_ok"){
+									location.href="data_view81cc.html?board_seq="+board_seq+"&parameter=&board_code=6&types=&search_val=&page=1";
+								}
+								else{
+									alert("비밀번호가 일치하지 않습니다");
+									return;
+								}
+						   }
+			});	
+	}
+
+	function viewpwd(j){
+		
+			if (j==1)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk1").hide();
+			}
+		
+			if (j==2)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk2").hide();
+			}
+		
+			if (j==3)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk3").hide();
+			}
+		
+			if (j==4)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk4").hide();
+			}
+		
+			if (j==5)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk5").hide();
+			}
+		
+			if (j==6)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk6").hide();
+			}
+		
+			if (j==7)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk7").hide();
+			}
+		
+			if (j==8)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk8").hide();
+			}
+		
+			if (j==9)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk9").hide();
+			}
+		
+			if (j==10)
+			{
+				$("#pwd_chk"+(j)).show();
+			}
+			else{
+				$("#pwd_chk10").hide();
+			}
+		
+	}
+
+</script>
+<div class="right_cons">
+ <div id="board_area">
+	<div class="board_search">
+		<form name="search_Frm" id="search_Frm" action="http://seventeen-17.com/asp/from_st.asp" method="get" >
+		<input type="hidden" name="board_code" value="6">
+		<select name="types" id="types" >
+			<option value="">전체</option>
+			<option value="title" >제목</option>
+			<option value="CONTENTS" >내용</option>
+		</select>
+		<input type="text" name="search_val" id="search_val" value="" class="board_bottom_bar">
+		<input type="button" class="board_bt_style03" title="" value="검색" name="" id="search_img">
+		</form>
+	</div>
+	<!--Board_list-->
+	<table cellpadding="0" cellspacing="0" class="free_board" summary="" >
+		<caption>free_board</caption>
+		<colgroup>
+		<col width="61"/><col width="636"/><col width="110"/><col width="83"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th class="th_bg1">NO</th>
+				<th class="th_bg2">SUBJECT</th>
+				<th class="th_bg3">DATE</th>
+				<th class="th_bg4">ID</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				<td>46</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_viewa07d.html?board_seq=28791&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(1);"-->
+					[17&#39;s Diary - SVT] 2015~2016 #SVT Diary &#39;1주년을 축하해&#3..
+					</a>
+				</td>
+
+				<td>2016.05.26</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>45</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_view89c6.html?board_seq=27507&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(2);"-->
+					[17&#39;s Diary - SVT] 2016/03/20 #SVT300DAYS
+					</a>
+				</td>
+
+				<td>2016.03.20</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>44</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_view8c91.html?board_seq=21511&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(3);"-->
+					[17&#39;s Diary - SVT] 2015/12/31 세븐틴의 2015년
+					</a>
+				</td>
+
+				<td>2016.01.04</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>43</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_view2f18.html?board_seq=19612&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(4);"-->
+					[17&#39;s Diary - SVT] 2015/09&10 파이팅!!!!!!
+					</a>
+				</td>
+
+				<td>2015.10.15</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>42</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_view30ec.html?board_seq=13524&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(5);"-->
+					[17&#39;s Diary - SVT] 2015/05&06 한달 전 그 날 & 첫 사인회!
+					</a>
+				</td>
+
+				<td>2015.07.03</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>41</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_viewf2ef.html?board_seq=7507&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(6);"-->
+					[17&#39;s Diary - SVT] 2015/06/01 여자들이 꿈꾸는 남친의 말 23선 
+					</a>
+				</td>
+
+				<td>2015.06.13</td>
+				<td class="board_data">SEVENTEEN </td>
+			</tr>
+			
+			<tr>
+				<td>40</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_view693c.html?board_seq=6038&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(7);"-->
+					[17&#39;s Diary - SVT] 2015/05/26 오늘을 기억하라.
+					</a>
+				</td>
+
+				<td>2015.05.28</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>39</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_viewed15.html?board_seq=5875&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(8);"-->
+					[17&#39;s Diary - SVT] 2015/05/10 AM 03:12
+					</a>
+				</td>
+
+				<td>2015.05.22</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>38</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_viewce84.html?board_seq=5642&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(9);"-->
+					[17&#39;s Diary - SVT] 2015/04/06 리얼리티 첫 녹화하던날. 
+					</a>
+				</td>
+
+				<td>2015.05.06</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+			<tr>
+				<td>37</td>
+				<td class="title_area">
+				
+				
+				<!-- 비밀글일때 아이콘 붙는것 -->
+				
+						<a href="data_viewf683.html?board_seq=5456&amp;parameter=&amp;board_code=6&amp;types=&amp;search_val=&amp;page=1">
+						<!--a style="cursor:pointer;" onclick="viewpwd(10);"-->
+					[17&#39;s Diary - 석민] 2015/03/15 오늘은 솔로데이라고!!
+					</a>
+				</td>
+
+				<td>2015.03.27</td>
+				<td class="board_data">SEVENTEEN</td>
+			</tr>
+			
+		</tbody>
+	</table>
+	<div class="board_btn2">
+		
+	</div> 
+	<!--Page Number-->
+	<div class="number a_center" >
+		<img src='../board_img/arrow_l_end.gif' border='0' alt=''> <img src='../board_img/arrow_l.gif' border='0' alt=''> <b class="bbs_page"> &nbsp;1&nbsp; </b><a href='from_st4b3f.html?page=2&amp;board_code=6&amp;types=&amp;search_val=' class="bbs"> &nbsp;2&nbsp; </a><a href='from_st25c7.html?page=3&amp;board_code=6&amp;types=&amp;search_val=' class="bbs"> &nbsp;3&nbsp; </a><a href='from_st8e2f.html?page=4&amp;board_code=6&amp;types=&amp;search_val=' class="bbs"> &nbsp;4&nbsp; </a><a href='from_st453f.html?page=5&amp;board_code=6&amp;types=&amp;search_val=' class="bbs"> &nbsp;5&nbsp; </a> <img src='../board_img/arrow_r.gif' border='0' alt=''> <a href='from_st453f.html?page=5&amp;board_code=6&amp;types=&amp;search_val='> <img src='../board_img/arrow_r_end.gif' border='0' alt=''></a>
+	</div>
+ </div><!--END Board-->
+
+</div>
+
+	</div>
+</div><!--END Container-->
+
+<!--Quick-->
+	<!--div id="quick">
+		<ul>
+			<li><a href="/"><img src="../image/common/quick_home.png" alt="HOME"></a></li>	
+				
+					<li><a href="../asp/login_new.asp"><img src="../image/common/quick_login.png" alt="LOGIN"></a></li>
+					<li><a href="../asp/join_new.asp"><img src="../image/common/quick_join.png" alt="JOIN"></a></li>
+				
+		</ul>
+	</div--><!--END Quick-->
+	<!--Footer-->
+	<div id="footer">
+		<p class="pt20 pb20">Seventeen Copyrightⓒ2013 PLEDIS Co.,Ltd. All Rights Reserved.</p>
+	</div><!--END Footer-->
+	
+ </div><!--END Wrap-->
+  
+ </body>
+
+<!-- Mirrored from seventeen-17.com/asp/from_st.asp by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Dec 2017 07:20:54 GMT -->
+</html>
+<script type="text/javascript">
+
+
+function setCookie(name,value,expiredays) {	
+	var today = new Date();
+	today.setDate(today.getDate()+expiredays);
+	document.cookie = name + "=" + escape(value) + "; path=/; expires=" + today.toGMTString() + ";";
+}
+
+function getCookie( name ) {
+   var nameOfCookie = name + "="; 
+   var x = 0; 
+   while ( x <= document.cookie.length ) 
+   { 
+		   var y = (x+nameOfCookie.length); 
+		   if ( document.cookie.substring( x, y ) == nameOfCookie ) { 
+				   if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+						   endOfCookie = document.cookie.length; 
+				   return unescape( document.cookie.substring( y, endOfCookie ) ); 
+		   } 
+		   x = document.cookie.indexOf( " ", x ) + 1; 
+		   if ( x == 0 ) 
+				   break; 
+   } 
+   return ""; 
+}
+
+
+
+var popups = "".split(",");
+
+function popupLocationGo(url, target){
+	if (target == 1) //부모창... 요기는 현재 자신창
+	{
+		location.href= url;
+	}
+	else
+	{
+		window.open(url, '', '');
+	}
+}
+
+function layerPopupDisplay(obj){
+//	alert(obj);
+//	return;
+	$("#" + obj).css("display", "none");
+}
+
+$(function(){
+	$(popups).each(function(n){		
+		
+		var this_name = popups[n].substring(0, popups[n].lastIndexOf("_"));
+		var this_type = popups[n].substring(popups[n].lastIndexOf("_") + 1, popups[n].length);
+		var this_idx = popups[n].split("_")[1];
+		
+		if (getCookie(this_name) != "no")
+		{
+			if (this_type == 1) // 팝업형
+			{
+				window.open('../popup/img_popupfa50.html?seq='+this_idx, 'tomato_popup_'+n, 'width=50, height=50, left=0, top=0, toolbar=no, menubar=no, scrollbars=no');
+			}
+			else //레이어형
+			{		
+				$.get("../popup/layer_popup.html", {seq:this_idx}, function(data){$(window.document.body).append(data);});				
+			}
+		}		
+	});
+});
+</script>

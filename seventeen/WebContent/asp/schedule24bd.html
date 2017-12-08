@@ -1,0 +1,725 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ 
+<!-- Mirrored from seventeen-17.com/asp/schedule.asp?art=&current_date=2019-07-01 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Dec 2017 11:26:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <title> SEVENTEEN Official website </title>
+  <meta name="Author" content="minee">
+  <meta name="Publisher" content="MyelHub">
+  <meta name="Description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+  <link type="text/css" rel="stylesheet" href="../css/default.css" />
+  <script type="text/javascript" src="../../code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="../js/doorer.js"></script>
+ </head>
+
+ <!--게시판넣기-->
+<script language='javascript' type='text/javascript'>
+
+		//<![CDATA[
+		function doResize(id) 
+		{ 
+		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+		obj.height = obj.contentWindow.document.body.scrollHeight; 
+		}
+		//]]> 
+	</script>
+
+ <body
+ 
+ >
+ <!--Wrap-->
+ <div id="wrap">
+ 
+	<!--div class="black_bg">
+		<div class="black_bg_in">
+			<p><img src="../image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
+		</div>
+	</div-->
+
+		
+	<p class="m_top"><img src="../image/main/main_blue.jpg"border="0" alt=""></p>
+	<!--Header-->
+	<div id="header_new">
+		<ul class="m_menu">
+			<li><img src="../image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="../index.html"><img src="../image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<!--li><a href="../index_02.asp"><img src="../image/common/menu/menu01.jpg" border="0" alt=""></a></li-->
+			<li><a href="profile.html"><img src="../image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+			<!--li><a href="javascript:alert('준비중입니다');"><img src="../image/common/menu/menu02.jpg" border="0" alt=""></a></li-->
+			<li><a href="notice_new.html"><img src="../image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="schedule.html"><img src="../image/common/menu/menu04.jpg" border="0" alt=""></a></li>
+			<li><a href="vote_newff79.html?cate_idx=42"><img src="../image/common/menu/menu05.jpg" border="0" alt=""></a></li>
+			<!--li><a href="javascript:alert('준비중입니다');"><img src="../image/common/menu/menu05.jpg" border="0" alt=""></a></li-->
+			<li><a href="fanboard.html"><img src="../image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="from_st.html"><img src="../image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+			
+				<li><a href="login_new.html"><img src="../image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+			
+			<li><img src="../image/common/menu/menu_right.jpg"border="0" alt=""></li>
+		</ul>
+	</div><!--END Header-->
+	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
+
+<!--Container-->
+<div id="container_msub">
+			
+	<div class="schedule" >		
+		<p class="schedule_title"><img src="../image/sub/board_title04.jpg" border="0" alt="schedule" /></p>
+		<!--클릭하면 스케쥴내용 노출-->
+
+<script type="text/javascript">
+
+	function move_date(){
+		var current_date = $("#schedule_year").val()+"-"+$("#schedule_month").val()+"-01";
+		location="schedulec054.html?pageflag=&amp;current_date="+current_date+"&cate=&board_code=1";
+	}
+
+	function show_sc(title1,title2,title3,title4,title5, months, days){
+
+		$(".sb_pop_text").show();
+		$("#h_sc").html(months+"월 "+days+"일 <span>Schedule</span>");
+		if (title1 != ""){
+			$("#ptitle1").show();
+			$("#spantitle1").html(title1.replace(/\,/g,"<img src='../image/sub/sd_icon01.png' width='18' height='18' border='0' alt='con'>"));
+		}else{
+			$("#ptitle1").hide();
+			$("#spantitle1").html("");		
+		}
+		if (title2 != ""){
+			$("#ptitle2").show();
+			$("#spantitle2").html(title2.replace(/\,/g,"<img src='../image/sub/sd_icon02.png' width='18' height='18' border='0' alt='con'>"));
+		}else{
+			$("#ptitle2").hide();
+			$("#spantitle2").html("");		
+		}
+		if (title3 != ""){
+			$("#ptitle3").show();
+			$("#spantitle3").html(title3.replace(/\,/g,"<img src='../image/sub/sd_icon03.png' width='18' height='18' border='0' alt='con'>"));
+		}else{
+			$("#ptitle3").hide();
+			$("#spantitle3").html("");		
+		}
+		if (title4 != ""){
+			$("#ptitle4").show();
+			$("#spantitle4").html(title4.replace(/\,/g,"<img src='../image/sub/sd_icon04.png' width='18' height='18' border='0' alt='con'>"));
+		}else{
+			$("#ptitle4").hide();
+			$("#spantitle4").html("");		
+		}
+		if (title5 != ""){
+			$("#ptitle5").show();
+			$("#spantitle5").html(title5.replace(/\,/g,"<img src='../image/sub/sd_icon05.png' width='18' height='18' border='0' alt='con'>"));
+		}else{
+			$("#ptitle5").hide();
+			$("#spantitle5").html("");		
+		}
+	}
+
+</script>
+
+<input type="hidden" id="schedule_cal" value="2019">
+
+<div class="sb_pop_text" style="display:none;">
+	<h1 id="h_sc">3월 1일 <span>Schedule</span></h1>
+	<p id="ptitle1" style="display:none;"><img src="../image/sub/sd_icon01.png" border="0" alt="con"> <span id="spantitle1">PM8:00 콘서트</span> </p>
+	<p id="ptitle2" style="display:none;"><img src="../image/sub/sd_icon02.png" border="0" alt="con"> <span id="spantitle2">PM8:00 콘서트</span> </p>
+	<p id="ptitle3" style="display:none;"><img src="../image/sub/sd_icon03.png" border="0" alt="con"> <span id="spantitle3">PM8:00 콘서트</span> </p>
+	<p id="ptitle4" style="display:none;"><img src="../image/sub/sd_icon04.png" border="0" alt="con"> <span id="spantitle4">PM8:00 콘서트</span> </p>
+	<p id="ptitle5" style="display:none;"><img src="../image/sub/sd_icon05.png" border="0" alt="con"> <span id="spantitle5">PM8:00 콘서트</span> </p>
+</div>
+
+<!--스케쥴내용이 없는경우
+<div class="sb_pop_text">
+		<h1>3월 1일 <span>Schedule</span></h1>
+		<p>해당스케쥴이없습니다.  </p>
+</div>
+-->
+
+
+
+<div id="Schedule" class="sd_wrap">
+	<div class="sd_title">
+		<a href="schedule5ab8.html?art=&amp;current_date=2019-06-01"><img src="../image/sub/sd_left_btn.png" alt=""/></a>
+		<span>2019.07</span>
+		<a href="scheduleac92.html?art=&amp;current_date=2019-08-01"><img src="../image/sub/sd_right_btn.png" alt=""/></a>
+	</div>
+		
+	<ul class="sd_header sd_view">
+		<li>SUN</li>
+		<li>MON</li>
+		<li>TUE</li>
+		<li>WED</li>
+		<li>THU</li>
+		<li>FRI</li>
+		<li>SAT</li>
+	</ul>
+	
+
+	<ul class="sd_list sd_view">
+		
+	<li>
+		
+			
+	</li>
+		
+	<li>
+		
+			1
+	<div class='sd_text' onclick="show_sc('','','','','','07','01');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			2
+	<div class='sd_text' onclick="show_sc('','','','','','07','02');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			3
+	<div class='sd_text' onclick="show_sc('','','','','','07','03');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			4
+	<div class='sd_text' onclick="show_sc('','','','','','07','04');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			5
+	<div class='sd_text' onclick="show_sc('','','','','','07','05');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			6
+	<div class='sd_text' onclick="show_sc('','','','','','07','06');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+	
+
+	<ul class="sd_list sd_view">
+		
+	<li>
+		
+			7
+	<div class='sd_text' onclick="show_sc('','','','','','07','07');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			8
+	<div class='sd_text' onclick="show_sc('','','','','','07','08');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			9
+	<div class='sd_text' onclick="show_sc('','','','','','07','09');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			10
+	<div class='sd_text' onclick="show_sc('','','','','','07','10');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			11
+	<div class='sd_text' onclick="show_sc('','','','','','07','11');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			12
+	<div class='sd_text' onclick="show_sc('','','','','','07','12');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			13
+	<div class='sd_text' onclick="show_sc('','','','','','07','13');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+	
+
+	<ul class="sd_list sd_view">
+		
+	<li>
+		
+			14
+	<div class='sd_text' onclick="show_sc('','','','','','07','14');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			15
+	<div class='sd_text' onclick="show_sc('','','','','','07','15');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			16
+	<div class='sd_text' onclick="show_sc('','','','','','07','16');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			17
+	<div class='sd_text' onclick="show_sc('','','','','','07','17');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			18
+	<div class='sd_text' onclick="show_sc('','','','','','07','18');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			19
+	<div class='sd_text' onclick="show_sc('','','','','','07','19');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			20
+	<div class='sd_text' onclick="show_sc('','','','','','07','20');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+	
+
+	<ul class="sd_list sd_view">
+		
+	<li>
+		
+			21
+	<div class='sd_text' onclick="show_sc('','','','','','07','21');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			22
+	<div class='sd_text' onclick="show_sc('','','','','','07','22');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			23
+	<div class='sd_text' onclick="show_sc('','','','','','07','23');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			24
+	<div class='sd_text' onclick="show_sc('','','','','','07','24');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			25
+	<div class='sd_text' onclick="show_sc('','','','','','07','25');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			26
+	<div class='sd_text' onclick="show_sc('','','','','','07','26');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			27
+	<div class='sd_text' onclick="show_sc('','','','','','07','27');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+	
+
+	<ul class="sd_list sd_view">
+		
+	<li>
+		
+			28
+	<div class='sd_text' onclick="show_sc('','','','','','07','28');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			29
+	<div class='sd_text' onclick="show_sc('','','','','','07','29');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			30
+	<div class='sd_text' onclick="show_sc('','','','','','07','30');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			31
+	<div class='sd_text' onclick="show_sc('','','','','','07','31');" >
+		<p class="icon">
+			
+		</p>
+	</div>
+
+	</li>
+		
+	<li>
+		
+			
+	</li>
+		
+	<li>
+		
+			
+	</li>
+		
+	<li>
+		
+			
+	</li>
+	
+</ul>
+		<div class="sd_icon_list">
+			<img src="../image/sub/sd_icon01.png"><span>라디오</span>
+			<img src="../image/sub/sd_icon02.png"><span>TV방송</span>
+			<img src="../image/sub/sd_icon03.png"><span>공연</span>
+			<img src="../image/sub/sd_icon04.png"><span>이벤트</span>
+			<img src="../image/sub/sd_icon05.png"><span>기타</span>
+		</div>
+		<div id="sd_popup" class="sd_popup"></div>
+	</div> 
+
+	</div>
+</div><!--END Container-->
+
+
+<!--Quick-->
+	<!--div id="quick">
+		<ul>
+			<li><a href="/"><img src="../image/common/quick_home.png" alt="HOME"></a></li>	
+				
+					<li><a href="../asp/login_new.asp"><img src="../image/common/quick_login.png" alt="LOGIN"></a></li>
+					<li><a href="../asp/join_new.asp"><img src="../image/common/quick_join.png" alt="JOIN"></a></li>
+				
+		</ul>
+	</div--><!--END Quick-->
+	<!--Footer-->
+	<div id="footer">
+		<p class="pt20 pb20">Seventeen Copyrightⓒ2013 PLEDIS Co.,Ltd. All Rights Reserved.</p>
+	</div><!--END Footer-->
+	
+ </div><!--END Wrap-->
+  
+ </body>
+
+<!-- Mirrored from seventeen-17.com/asp/schedule.asp?art=&current_date=2019-07-01 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Dec 2017 11:26:18 GMT -->
+</html>
+<script type="text/javascript">
+
+
+function setCookie(name,value,expiredays) {	
+	var today = new Date();
+	today.setDate(today.getDate()+expiredays);
+	document.cookie = name + "=" + escape(value) + "; path=/; expires=" + today.toGMTString() + ";";
+}
+
+function getCookie( name ) {
+   var nameOfCookie = name + "="; 
+   var x = 0; 
+   while ( x <= document.cookie.length ) 
+   { 
+		   var y = (x+nameOfCookie.length); 
+		   if ( document.cookie.substring( x, y ) == nameOfCookie ) { 
+				   if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+						   endOfCookie = document.cookie.length; 
+				   return unescape( document.cookie.substring( y, endOfCookie ) ); 
+		   } 
+		   x = document.cookie.indexOf( " ", x ) + 1; 
+		   if ( x == 0 ) 
+				   break; 
+   } 
+   return ""; 
+}
+
+
+
+var popups = "".split(",");
+
+function popupLocationGo(url, target){
+	if (target == 1) //부모창... 요기는 현재 자신창
+	{
+		location.href= url;
+	}
+	else
+	{
+		window.open(url, '', '');
+	}
+}
+
+function layerPopupDisplay(obj){
+//	alert(obj);
+//	return;
+	$("#" + obj).css("display", "none");
+}
+
+$(function(){
+	$(popups).each(function(n){		
+		
+		var this_name = popups[n].substring(0, popups[n].lastIndexOf("_"));
+		var this_type = popups[n].substring(popups[n].lastIndexOf("_") + 1, popups[n].length);
+		var this_idx = popups[n].split("_")[1];
+		
+		if (getCookie(this_name) != "no")
+		{
+			if (this_type == 1) // 팝업형
+			{
+				window.open('../popup/img_popupfa50.html?seq='+this_idx, 'tomato_popup_'+n, 'width=50, height=50, left=0, top=0, toolbar=no, menubar=no, scrollbars=no');
+			}
+			else //레이어형
+			{		
+				$.get("../popup/layer_popup.html", {seq:this_idx}, function(data){$(window.document.body).append(data);});				
+			}
+		}		
+	});
+});
+</script>
+
+<!-- <div class="calendar_on">
+	<div class="schedule_view">
+		<p>
+			<span class="date">06월 10일</span>
+			<strong>Schedule</strong>
+		</p>
+		<ul class="detail">
+			<li>
+				<span class="schedule_icon"><img src="../image/sub/s_icon05.png" width="18" height="18" border="0" /></span>Happy Birthday
+				<p></p>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="sd_wrap">
+	<div class="sd_title">
+		<a href="#"><img src="../image/sub/sd_left_btn.png" /></a>
+		<span>2015.06</span>
+		<a href="#"><img src="../image/sub/sd_right_btn.png" /></a>
+	</div>
+	<ul class="sd_header sd_view">
+		<li>SUN</li>
+		<li>MON</li>
+		<li>TUE</li>
+		<li>WED</li>
+		<li>THU</li>
+		<li>FRI</li>
+		<li>SAT</li>
+	</ul>
+	<ul class="sd_list sd_view">
+		<li><img width="0" style="visibility: visible;" /></li>
+		<li>1<br/><br/></li>
+		<li>2<br/><br/></li>
+		<li>3<br/><br/></li>
+		<li>4<br/><br/></li>
+		<li>5<br/><br/></li>
+		<li>6<br/><br/></li>
+	</ul>
+	<ul class="sd_list sd_view">
+		<li>7<br/><br/></li>
+		<li>8<br/><br/></li>
+		<li>9<br/><br/></li>
+		<li>10<br/><br/></li>
+		<li>11<br/><br/></li>
+		<li>12<br/><br/></li>
+		<li>13<br/><br/></li>
+	</ul>
+	<ul class="sd_list sd_view">
+		<li>14<br/><br/></li>
+		<li>15<br/><br/></li>
+		<li>16<br/><br/></li>
+		<li>17<br/><br/></li>
+		<li>18<br/><br/></li>
+		<li>19<br/><br/></li>
+		<li>20<br/><br/></li>
+	</ul>
+	<ul class="sd_list sd_view">
+		<li>21<br/><br/></li>
+		<li>22<br/><br/></li>
+		<li>23<br/><br/></li>
+		<li>24<br/><br/></li>
+		<li>25<br/><br/></li>
+		<li>26<br/><br/></li>
+		<li>27<br/><br/></li>
+	</ul>
+	<ul class="sd_list sd_view">
+		<li>28<br/><br/></li>
+		<li>29<br/><br/></li>
+		<li>30<br/><br/></li>
+		<li><img width="0" style="visibility: visible;" /></li>
+		<li><img width="0" style="visibility: visible;" /></li>
+		<li><img width="0" style="visibility: visible;" /></li>
+		<li><img width="0" style="visibility: visible;" /></li>
+	</ul>
+	<div class="sd_icon_list">
+		<img src="../image/sub/s_icon01.png"><span>라디오</span>
+		<img src="../image/sub/s_icon02.png"><span>TV방송</span>
+		<img src="../image/sub/s_icon03.png"><span>공연</span>
+		<img src="../image/sub/s_icon04.png"><span>이벤트</span>
+		<img src="../image/sub/s_icon05.png"><span>기타</span>
+	</div>
+	<div id="sd_popup" class="sd_popup"></div>
+</div> -->
