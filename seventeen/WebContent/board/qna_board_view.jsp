@@ -8,21 +8,21 @@
 int p = 1;
 if (request.getAttribute("prev") != null) {
    p = (Integer) request.getAttribute("prev");
-   System.out.println("CHECK(request p)------->" + p);
+   System.out.println("CHECK(request)------->" + p);
 }
 String s = "음음음";
 
 s = (String) request.getAttribute("prevSub");
-System.out.println("CHECK(request s)------->" + s);
+System.out.println("CHECK(request)------->" + s);
 
 int n =1; String sn = "음음음음";
 
 if(request.getAttribute("next")!=null){
    n = (Integer) request.getAttribute("next");
-   System.out.println("CHECK(request n)------->" + n);
+   System.out.println("CHECK(request)------->" + n);
 }
 sn = (String) request.getAttribute("nextSub");
-System.out.println("CHECK(request sn)------->" + sn);
+System.out.println("CHECK(request)------->" + sn);
 
 %>
 
@@ -96,9 +96,12 @@ System.out.println("CHECK(request sn)------->" + sn);
 		
 		
 <script type="text/javascript" src="lib/js/validation/validation.js"></script>
+
+<!-- 
 <script type="text/javascript">
 
-	$(function(){
+// 자바스크립트로 게시글 수정/삭제를 구현한 것 (하지만 우리는 MVC2 패턴으로 할 것이므로 아예 날림) 
+ 	$(function(){
 		$("#write_img").css("cursor","pointer").bind("click",function(){
 			go_write(1);
 		})
@@ -164,8 +167,8 @@ System.out.println("CHECK(request sn)------->" + sn);
 		}	
 	}
 
-</script>
-
+ </script>
+ -->
 
 <link type="text/css" rel="stylesheet" href="css/board.css" />
 
@@ -231,7 +234,7 @@ System.out.println("CHECK(request sn)------->" + sn);
 							<!-- <img src="board_img/file/jpg.gif"> -->
 							
 					</td>
-					<th style="padding-left:10px;" ><img src="../board_img/t_02.png" width="31" height="14" border="0" alt="작성인"></th>
+					<th style="padding-left:10px;" ><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_NAME() %></td>
 					<th><img src="board_img/t_04.png" border="0" alt="등록일 "></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_DATE() %></td>
@@ -333,7 +336,7 @@ System.out.println("CHECK(request sn)------->" + sn);
 				  <tr>
 					<td colspan="2" height="23" align="center">
 						<input type="image" src="image/sub/pop_regist.gif" border=0  value="submit" style="padding-bottom:15px" onclick="pwd_check();" style="vertical-align:top;">&nbsp;
-						<a onclick="$('#pwd_chk').hide();$('#chk_pwd').val('');" style="cursor:pointer;" ><img src="../image/sub/pop_cancel.gif" border="0"style="vertical-align:top;"  ></a>
+						<a onclick="$('#pwd_chk').hide();$('#chk_pwd').val('');" style="cursor:pointer;" ><img src="image/sub/pop_cancel.gif" border="0"style="vertical-align:top;"  ></a>
 					</td>
 				  </tr>
 			  </table></td>
@@ -343,9 +346,11 @@ System.out.println("CHECK(request sn)------->" + sn);
 		 </div>
 		<div class="board_btn">
 			<p class="board_fLeft">
-				
+				<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
+				<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/>
 			</p>
 			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
+
 		</div>
 		<br /><br />
  </div><!--END Board-->
