@@ -1,7 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@ page import="net.board.db.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
+	request.setCharacterEncoding("UTF-8");
 	BoardBean board = (BoardBean)request.getAttribute("boarddata");
+int p = 1;
+if (request.getAttribute("prev") != null) {
+   p = (Integer) request.getAttribute("prev");
+   System.out.println("CHECK(request p)------->" + p);
+}
+String s = "ìŒìŒìŒ";
+
+s = (String) request.getAttribute("prevSub");
+System.out.println("CHECK(request s)------->" + s);
+
+int n =1; String sn = "ìŒìŒìŒìŒ";
+
+if(request.getAttribute("next")!=null){
+   n = (Integer) request.getAttribute("next");
+   System.out.println("CHECK(request n)------->" + n);
+}
+sn = (String) request.getAttribute("nextSub");
+System.out.println("CHECK(request sn)------->" + sn);
+
 %>
 
 
@@ -18,7 +40,7 @@
   <script type="text/javascript" src="/js/doorer.js"></script>
  </head>
 
- <!--°Ô½ÃÆÇ³Ö±â-->
+ <!--ê²Œì‹œíŒë„£ê¸°-->
 <script language='javascript' type='text/javascript'>
 
       //<![CDATA[
@@ -48,15 +70,18 @@
    <div id="header_new">
       <ul class="m_menu">
          <li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-         <li><a href="index.jsp"> <img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-         <li><a href="./profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-         <li><a href="GO_NOTICE.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+         <li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+         <!--li><a href="./index_02.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li-->
+         <li><a href="./profile.jsp"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+         <!--li><a href="javascript:alert('ì¤€ë¹„ì¤‘ì…ë‹ˆë‹¤');"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li-->
+         <li><a href="./notice_new.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+         <li><a href="./schedule.jsp"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
+         <li><a href="./vote_new.jsp"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
+         <!--li><a href="javascript:alert('ì¤€ë¹„ì¤‘ì…ë‹ˆë‹¤');"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li-->
+         <li><a href="./fanboard.jsp"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+         <li><a href="./from_st.jsp"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
          
-         <li><a href="./schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-         <li><a href="./vote_new.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-         <li><a href="./fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-         <li><a href="./from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-         <li><a href="./login_new.html"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+            <li><a href="./login_new.me"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
          
          <li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
       </ul>
@@ -112,7 +137,7 @@
 			dataType: "json",
 			async: true,
 			error: function(xhr){
-						alert('¿¡·¯¹ß»ı!!');
+						alert('ì—ëŸ¬ë°œìƒ!!');
 					},
 			success: function(data){
 								if (data == "_ok"){
@@ -124,7 +149,7 @@
 									}
 								}
 								else{
-									alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+									alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 									return;
 								}
 						   }
@@ -132,7 +157,7 @@
 	}
 
 	function real_del(){
-		if (confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+		if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			$("#del_Frm").attr("target","action_ifrm");
 			$("#del_Frm").attr("action","board/general/view_del.html");
 			$("#del_Frm").submit();
@@ -173,20 +198,20 @@
 			</colgroup>
 			<tbody>
 				<tr>
-					<th><img src="board_img/t_01.png" border="0" alt="Á¦ ¸ñ "></th>
+					<th><img src="board_img/t_01.png" border="0" alt="ì œ ëª© "></th>
 					<td colspan="4" class="board_title01" style="padding-left:10px;" > <%=board.getBOARD_SUBJECT()%> 
 					</td>
 					
-					<td style="text-align:center;"><!-- sns¹öÆ°Ãß°¡ 
+					<td style="text-align:center;"><!-- snsë²„íŠ¼ì¶”ê°€ 
 					<span><a href="#"><img src="../board_img/bt_metoday.gif" width="16" height="16" border="0" alt=""></a></span>
 					<span><a href="#"><img src="../board_img/bt_twitter.gif" width="16" height="16" border="0" alt=""></a></span>
 					<span><a href="#"><img src="../board_img/bt_facebook.gif" width="17" height="16" border="0" alt=""></a></span>
-					sns¹öÆ°Ãß°¡ ³¡ -->
+					snsë²„íŠ¼ì¶”ê°€ ë -->
 					</td>
 					 
 				</tr>
 				<tr>
-					<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="Ã·ºÎÆÄÀÏ"></th>
+					<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="ì²¨ë¶€íŒŒì¼"></th>
 					<td style="padding-left:10px;" >	
 						
 									<!--<img src="/board_img/file/jpg.gif">-->
@@ -206,9 +231,9 @@
 							<!-- <img src="board_img/file/jpg.gif"> -->
 							
 					</td>
-					<th style="padding-left:10px;" ><img src="../board_img/t_02.png" width="31" height="14" border="0" alt="ÀÛ¼ºÀÎ"></th>
+					<th style="padding-left:10px;" ><img src="../board_img/t_02.png" width="31" height="14" border="0" alt="ì‘ì„±ì¸"></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_NAME() %></td>
-					<th><img src="board_img/t_04.png" border="0" alt="µî·ÏÀÏ "></th>
+					<th><img src="board_img/t_04.png" border="0" alt="ë“±ë¡ì¼ "></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_DATE() %></td>
 				</tr>
 				<tr>
@@ -233,34 +258,55 @@
 		<!--Preview/Next-->
 		<form>
 		<table cellpadding="0" cellspacing="0" class="pre_next" summary=""   >
-			<caption>ÀÌÀü±Û/´ÙÀ½±Û</caption>
+			<caption>ì´ì „ê¸€/ë‹¤ìŒê¸€</caption>
 			<colgroup>
 				<col width="80"/><col width=""/>
 			</colgroup>
 			<tbody>
 				<tr>
-					<th><img src="board_img/t_prev.png" width="44" height="11" border="0" alt="ÀÌÀü±Û"></th>
-					
-					
+					<th><img src="board_img/t_prev.png" width="44" height="11" border="0" alt="ì´ì „ê¸€"></th>
 					
 					<td class="title_area">
-						<a href="./BoardDetailAction.bo?num=<%=board.getBOARD_NUM()+1%>">
-						ÀÌÀü±Û
+					
+					
+<%
+	if (request.getAttribute("prev") != null) 
+	{
+%>		<a href="./BoardDetailAction.bo?num=<%=p%>"><%=s%></a> <%
+    }
+	
+	else
+	{
+%>		ì´ì „ê¸€ì´ ì—†ìŠµë‹ˆë‹¤.
+<%
+ 	}
+%>
 						
 						<%-- <%=board.getBOARD_SUBJECT()%> --%>
-						</a>
+						
 					</td>
 				</tr>
 				
 				<tr>
-					<th><img src="board_img/t_next.png" width="44" height="11" border="0" alt="´ÙÀ½±Û"></th>
+					<th><img src="board_img/t_next.png" width="44" height="11" border="0" alt="ë‹¤ìŒê¸€"></th>
 					
 					<td class="title_area">
-						<a href="./BoardDetailAction.bo?num=<%=board.getBOARD_NUM()-1%>">
-						´ÙÀ½±Û
 						
-						<%-- <%=board.getBOARD_SUBJECT()%> --%>
-						</a>
+<%
+    if (request.getAttribute("next") != null) 
+    {
+%>
+ 
+ <a href="./BoardDetailAction.bo?num=<%=n%>"><%=sn%></a> 
+<%
+    }
+
+    else
+    {
+%> 		ë‹¤ìŒê¸€ì´ ì—†ìŠµë‹ˆë‹¤.
+<%
+    }
+%>
 					</td>
 				</tr>
 			</tbody>
@@ -280,7 +326,7 @@
 					</tr>
 					<input type="hidden" name="bbs_view_edit" value="1">
 					<tr align="center">
-					<td align="right">&nbsp;&nbsp;&nbsp; <b>ºñ¹Ğ¹øÈ£</b></td>
+					<td align="right">&nbsp;&nbsp;&nbsp; <b>ë¹„ë°€ë²ˆí˜¸</b></td>
 					<td align="left"> &nbsp;&nbsp;<input type="password" name="chk_pwd" id="chk_pwd" class="input" style="border:1px solid #ccc; height:20px;width:145px;"></td>
 				  </tr>
 
@@ -299,7 +345,7 @@
 			<p class="board_fLeft">
 				
 			</p>
-			<p class="board_fRight"><input type="button" class="board_bt_style01" title="¸ñ·ÏÀ¸·Î" value="¸ñ·ÏÀ¸·Î" name="" onClick="window.location='GO_NOTICE.jsp'"/></p>
+			<p class="board_fRight"><input type="button" class="board_bt_style01" title="ëª©ë¡ìœ¼ë¡œ" value="ëª©ë¡ìœ¼ë¡œ" name="" onClick="location='./BoardList.bo'"/></p>
 		</div>
 		<br /><br />
  </div><!--END Board-->
@@ -315,7 +361,7 @@
 
 	<!--Footer-->
 	<div id="footer">
-		<p class="pt20 pb20">Seventeen Copyright¨Ï2013 PLEDIS Co.,Ltd. All Rights Reserved.</p>
+		<p class="pt20 pb20">Seventeen Copyrightâ“’2013 PLEDIS Co.,Ltd. All Rights Reserved.</p>
 	</div><!--END Footer-->
 	
  </div><!--END Wrap-->
@@ -356,7 +402,7 @@ function getCookie( name ) {
 var popups = "".split(",");
 
 function popupLocationGo(url, target){
-	if (target == 1) //ºÎ¸ğÃ¢... ¿ä±â´Â ÇöÀç ÀÚ½ÅÃ¢
+	if (target == 1) //ë¶€ëª¨ì°½... ìš”ê¸°ëŠ” í˜„ì¬ ìì‹ ì°½
 	{
 		location.href= url;
 	}
@@ -381,11 +427,11 @@ $(function(){
 		
 		if (getCookie(this_name) != "no")
 		{
-			if (this_type == 1) // ÆË¾÷Çü
+			if (this_type == 1) // íŒì—…í˜•
 			{
 				window.open('../popup/img_popupfa50.html?seq='+this_idx, 'tomato_popup_'+n, 'width=50, height=50, left=0, top=0, toolbar=no, menubar=no, scrollbars=no');
 			}
-			else //·¹ÀÌ¾îÇü
+			else //ë ˆì´ì–´í˜•
 			{		
 				$.get("../popup/layer_popup.html", {seq:this_idx}, function(data){$(window.document.body).append(data);});				
 			}

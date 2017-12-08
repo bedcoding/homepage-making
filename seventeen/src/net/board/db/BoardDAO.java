@@ -158,7 +158,73 @@ public class BoardDAO {
 		return false;
 	}
 	
-	
+	public BoardBean getPrev(int num) {
+	      // TODO Auto-generated method stub
+	      BoardBean board = null;
+	      try {
+	         pstmt = con.prepareStatement(
+	               "SELECT board_num, board_subject FROM board WHERE board_num IN ((SELECT MIN(board_num) FROM board  WHERE board_num >?))");
+	         pstmt.setInt(1, num);
+
+	         rs = pstmt.executeQuery();
+
+	         if (rs.next()) {
+	            board = new BoardBean();
+	            board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+	            board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+	            
+	         }
+	         return board;
+	      } catch (Exception ex) {
+	         System.out.println("getPrev 에러 : " + ex);
+	      } finally {
+	         if (rs != null)
+	            try {
+	               rs.close();
+	            } catch (SQLException ex) {
+	            }
+	         if (pstmt != null)
+	            try {
+	               pstmt.close();
+	            } catch (SQLException ex) {
+	            }
+	      }
+	      return null;
+	   }
+	   
+	   public BoardBean getNext(int num) {
+	      // TODO Auto-generated method stub
+	      BoardBean board = null;
+	      try {
+	         pstmt = con.prepareStatement(
+	               "SELECT board_num, board_subject FROM board WHERE board_num IN ((SELECT MAX(board_num) FROM board  WHERE board_num < ?))");
+	         pstmt.setInt(1, num);
+
+	         rs = pstmt.executeQuery();
+
+	         if (rs.next()) {
+	            board = new BoardBean();
+	            board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+	            board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+	            
+	         }
+	         return board;
+	      } catch (Exception ex) {
+	         System.out.println("getNext 에러 : " + ex);
+	      } finally {
+	         if (rs != null)
+	            try {
+	               rs.close();
+	            } catch (SQLException ex) {
+	            }
+	         if (pstmt != null)
+	            try {
+	               pstmt.close();
+	            } catch (SQLException ex) {
+	            }
+	      }
+	      return null;
+	   }
 	
 	//글 수정.
 	public boolean boardModify(BoardBean modifyboard) throws Exception{
