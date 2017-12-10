@@ -3,7 +3,7 @@
 <%
 	BoardBean board = (BoardBean)request.getAttribute("boarddata");
 %>
- 
+
 <html>
 <head>
 	<title>MVC °Ô½ÃÆÇ</title>
