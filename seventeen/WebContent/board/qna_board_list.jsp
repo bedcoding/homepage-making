@@ -33,8 +33,8 @@
       //<![CDATA[
       function doResize(id) 
       { 
-      var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-      obj.height = obj.contentWindow.document.body.scrollHeight; 
+     	 var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+     	 obj.height = obj.contentWindow.document.body.scrollHeight; 
       }
       //]]> 
    </script>
@@ -58,10 +58,24 @@
          <li><a href="./vote_new.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
          <li><a href="../fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
          <li><a href="../from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-         
-         <li><a href="../login_new.jsp"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
-         
-         <li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디" + ida);
+					if (ida == null) {
+				%><li><a href="../login_new.me"><img
+						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+				<li><a href="../logoutaction.me"><img
+						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+
+				<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
       </ul>
    </div><!--END Header-->
    <iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
@@ -412,10 +426,19 @@
 
 
 
-	<div class="board_btn2">	
-		<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo'"/>
-	</div> 
-
+				<%
+					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
+					
+					if (ida == null) {
+				%>  
+				
+				<%
+					} else {
+				%>
+					<div class="board_btn2">	
+						<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo'"/>
+					</div> 
+				<%  }  %>
 
 </div> <!--END Board-->
 

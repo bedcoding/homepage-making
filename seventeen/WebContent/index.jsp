@@ -53,7 +53,22 @@
 			<li><a href="asp/vote_newff79.html?cate_idx=42"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
 			<li><a href="asp/fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="asp/from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/login_new.html"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디" + ida);
+					if (ida == null) {
+				%><li><a href="GO_LOGIN.jsp"><img
+						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+				<li><a href="GO_LOGOUT.jsp"><img
+						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
 			
 			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
 		</ul>
