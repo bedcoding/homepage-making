@@ -35,23 +35,13 @@
 		obj.height = obj.contentWindow.document.body.scrollHeight; 
 		}
 		//]]> 
-		<%-- //세션체크 <% request.setCharacterEncoding("utf-8"); %>
-		var member_id = "<%=(String)session.getAttribute("loggedID")%>"
-
-		alert(member_id); --%>
+		
 	</script>
 
- <body
- 
- >
+ <body>
  <!--Wrap-->
  <div id="wrap">
  
-	<!--div class="black_bg">
-		<div class="black_bg_in">
-			<p><img src="image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
-		</div>
-	</div-->
 
 		
 	<p class="m_top"><img src="image/main/main_blue.jpg"border="0" alt=""></p>
@@ -59,13 +49,11 @@
 	<div id="header_new">
 		<ul class="m_menu">
 			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-			
-			<li><a href="index.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
 			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
 						
 			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
 			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
 			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
@@ -76,32 +64,23 @@
 					System.out.println("세션에 저장된 아이디: " + ida);
 					if (ida == null) 
 					{
-				%>		<li><a href="login_new.me"><img
-						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
 				<%
 					} else {
 				%>
-						<li><a href="logoutaction.me"><img
-						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
 				<%
 					}
-				%>	
-			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>		
 		</ul>
 	</div><!--END Header-->
 
 
 	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe><!--Quick-->
-	<!--div id="quick">
-		<ul>
-			<li><a href="/"><img src="image/common/quick_home.png" alt="HOME"></a></li>	
-				
-					<li><a href="./login_new.jsp"><img src="image/common/quick_login.png" alt="LOGIN"></a></li>
-					<li><a href="./join_new.jsp"><img src="image/common/quick_join.png" alt="JOIN"></a></li>
-				
-		</ul>
-	</div-->
-	<!--END Quick-->
 
 		<script language='javascript'>
 			window.name ="Parent_window";

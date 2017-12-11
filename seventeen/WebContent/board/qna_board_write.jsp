@@ -31,20 +31,6 @@
 
  </head>
 
- <!--게시판넣기-->
-<!-- 
-<script language='javascript' type='text/javascript'>
-
-		//<![CDATA[
-		function doResize(id) 
-		{ 
-		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-		obj.height = obj.contentWindow.document.body.scrollHeight; 
-		}
-		//]]> 
-	</script>
-
- --> 
  
  <body>
  <!--Wrap-->
@@ -55,14 +41,12 @@
 	<!--Header-->
 	<div id="header_new">
 		<ul class="m_menu">
-						<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-			
-			<li><a href="index.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
 			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
 						
 			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
 			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
 			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
@@ -70,16 +54,16 @@
 				<%
 					String ida = null;
 					ida = (String) session.getAttribute("loggedID");
-					System.out.println("세션에 저장된 아이디" + ida);
+					System.out.println("세션에 저장된 아이디: " + ida);
 					if (ida == null) 
 					{
-				%>		<li><a href="login_new.me"><img
-						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
 				<%
 					} else {
 				%>
-						<li><a href="logoutaction.me"><img
-						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
 				<%
 					}
 				%>
