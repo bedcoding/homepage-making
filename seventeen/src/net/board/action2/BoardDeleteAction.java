@@ -1,11 +1,11 @@
-package net.board.action;
+package net.board.action2;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.board.db.*;
+import net.board.db2.*;
 
 public class BoardDeleteAction implements Action {
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
@@ -26,7 +26,7 @@ public class BoardDeleteAction implements Action {
 	   		PrintWriter out=response.getWriter();
 	   		out.println("<script>");
 	   		out.println("alert('비밀번호 틀림');");
-	   		out.println("location.href='./BoardList.bo';");
+	   		out.println("location.href='./BoardList.bo2';");
 	   		out.println("</script>");
 	   		out.close();
 	   		return null;
@@ -40,7 +40,7 @@ public class BoardDeleteAction implements Action {
 	   	
 	   	System.out.println("삭제 성공");
 	   	forward.setRedirect(true);
-   		forward.setPath("./BoardList.bo");
+   		forward.setPath("./BoardList.bo2");
    		return forward;
 	 }
 }

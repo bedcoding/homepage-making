@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<% response.sendRedirect("http://localhost:8088/seventeen/BoardList.bo2");%>
 </body>
 </html>

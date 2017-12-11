@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
-<%
-	BoardBean board = (BoardBean)request.getAttribute("boarddata");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+ <head>
   	<title> SEVENTEEN Official website </title>
   	<meta name="Author" content="minee">
   	<meta name="Publisher" content="MyelHub">
@@ -15,16 +16,33 @@
   	<link type="text/css" rel="stylesheet" href="css/default.css" />
   	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   	<script type="text/javascript" src="/js/doorer.js"></script>
-	<script type="text/javascript">
-	function modifyboard(){
-		modifyform.submit();
+	
+	<script language="javascript">
+	function addboard()
+	{
+		boardform.submit();
 	}
 	</script>
-</head>
 
-<body>
+ </head>
 
-<!--Wrap-->
+ <!--게시판넣기-->
+<!-- 
+<script language='javascript' type='text/javascript'>
+
+		//<![CDATA[
+		function doResize(id) 
+		{ 
+		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+		obj.height = obj.contentWindow.document.body.scrollHeight; 
+		}
+		//]]> 
+	</script>
+
+ --> 
+ 
+ <body>
+ <!--Wrap-->
  <div id="wrap">	
 	<p class="m_top"><img src="image/main/main_blue.jpg" border="0" alt=""></p>
 	
@@ -35,15 +53,12 @@
 			<li><img src="image/common/menu/menu_left.jpg" border="0" alt=""></li>
 			<li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
 			<li><a href="../asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-			<li><a href="GO_NOTICE.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			
+			<li><a href="../asp/notice_new.html"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
 			<li><a href="../asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
 			<li><a href="../asp/vote_new.html?cate_idx=42"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
 			<li><a href="../asp/fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="../asp/from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-		
 			<li><a href="../asp/logout.html"><img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
-		
 			<li><img src="image/common/menu/menu_right.jpg" border="0" alt=""></li>
 		</ul>
 	</div><!--END Header-->
@@ -74,88 +89,104 @@ function spamImageChange(){
 
 <div class="right_cons">
  <div id="board_area" class="pt40" >
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 게시판 수정 -->
-<form action="BoardModifyAction.bo" method="post" name="modifyform">
-<input type="hidden" name="BOARD_NUM" value=<%=board.getBOARD_NUM() %>>
-<table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
-	
 		
-	<tr>
-		<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
-		<td>
-			<input type="text" name="BOARD_NAME" value="<%=board.getBOARD_NAME() %>" class="write_bar_close" readonly>
-			<%-- value에 <%=id %> 추가 --%>
-			<!-- readonly 추가 -->
-		</td>
-		<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
-		<td>
-			<input name="BOARD_PASS" type="password" class="write_bar">
-		</td>
-	</tr>
-	
-	<tr>
-		<th><img src="board_img/t_01.png" width="30" height="14" border="0" alt="제목"></th>
-		<td colspan="3">
-			<input name="BOARD_SUBJECT" maxlength="100" class="write_title" title="title"
-				value="<%=board.getBOARD_SUBJECT()%>">
-		</td>
-	</tr>
-	
-	<%if(!(board.getBOARD_FILE()==null)){ %>
-	<tr>
-		<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="파일첨부"></th>
-		<td colspan="3">
-			&nbsp;&nbsp;<%=board.getBOARD_FILE() %>
-		</td>
-	</tr>
-	<%} %>
-	
-	<tr>
-		<th><img src="board_img/t_06.png" width="30" height="14" border="0" alt="내용"></th>
-		<td colspan="3">
-			<textarea name="BOARD_CONTENT" class="write_texta" title="">
-			<%=board.getBOARD_CONTENT() %>
-			</textarea>
-		</td>
-	</tr>
-
-	
+		
+		<form action="./BoardAddAction.bo2" method="post" enctype="multipart/form-data" name="boardform">
+			<table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
+			
+<!-- 			<colgroup>
+				<col width="80"/><col width="280"/><col width="80"/><col width=""/>
+			</colgroup>
+			-->
+			
+				
+ 				<tr>
+					<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
+					<td>
+						<input type="text" name="BOARD_NAME" value="" class="write_bar_close">
+					</td>
+					<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
+					<td><input type="password" class="write_bar" name="BOARD_PASS" value="" />				
+					</td>
+				</tr>
+				<!-- 비밀글 체크하기 -->
 <!-- 
-	<tr align="center" valign="middle">
-		<td colspan="5">
-			<font size=2>
-			<a href="javascript:modifyboard()">[수정]</a>&nbsp;&nbsp;
-			<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
-			</font>
-		</td>
-	</tr> -->
-	
-</table>
-</form>
-
+				<tr style="display:none;">			
+					<th style="margin-left:-100px;"> <img src="../board_img/t_100.png" alt="" style="vertical-align:center;"/></th>
+					<td colspan="3" style="">
+						<input type="checkbox" checked name="secret_flag" id="secret_flag" value="0" /> 비밀글 설정하기 (체크하시면 비밀글로 설정 됩니다.)
+					</td>
+				</tr>
+ -->
+ 				<!-- 비밀글 체크하기 끝-->
+				<tr>
+					<th><img src="board_img/t_01.png" width="30" height="14" border="0" alt="제 목"></th>
+					<td colspan="3">
+					<input type="text" class="write_title" title="title"  name="BOARD_SUBJECT" value="" />
+					</td>
+				</tr>
+				
+				<tr>
+					<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="파일첨부"></th>
+					<td colspan="3">
+					<input type="file" name="BOARD_FILE" class="write_file" >
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<th><img src="board_img/t_06.png" width="30" height="14" border="0" alt="내 용"></th>
+					<td colspan="3">
+					<textarea name="BOARD_CONTENT" class="write_texta" title="">
+					
+					</textarea>
+					</td>
+				</tr>
+				
+				<!-- 스팸방지
+				<tr> 
+					<td align="center" height="40">
+					<img src="../board_img/t_sp.png" width="41" height="14" border="0" alt="스팸방지"></td>
+					<td colspan="3">
+					<input name="spam_cut" id="spam_cut" type="text" size="20" maxlength="6"  class="write_bar" style="ime-mode:disabled; text-transform:uppercase;">
+					<a onclick="spamImageChange();" style="cursor:pointer;"> &nbsp;이미지 재생성&nbsp;</a>
+					<img src="/spam/captcha.asp" name="spam_img" id="spam_img" align="absmiddle" style="margin:0 0px 0 0;"></td>
+				</tr>
+	 			-->
+	 			
+	 			<!--Button-->
+			<!-- <div class="board_btn"> -->
+			
+		<!-- 
+				<a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp;
+				<a href="javascript:history.go(-1)">[뒤로]</a>
+		 -->	
+		 
+			<!-- 
+				<input type="button" class="board_bt_style01" value="작성하기" onclick="location.href='javascript:addboard()' " />
+				<input type="button" class="board_bt_style02" value="취소하기" onclick="location.href='javascript:history.go(-1)' " />
+			 -->
+			
+			<!-- 		
+				<input type="button" class="board_bt_style01" title="" value="작성하기" name="write_img" id="write_img" />
+				<input type="button" class="board_bt_style02" title="" value="취소하기" name="" onClick="window.location='../asp/fanboard.asp'" />
+		 	-->		
+			
+				</table>
+						</form>
+			
+			
 			<!--Button-->
 			<div class="board_btn"> 
 				<tr align="center" valign="middle">
 					<td colspan="5">
-						<input type="button" class="board_bt_style01" value="수정하기" onclick="location.href='javascript:modifyboard()' " />
+						<input type="button" class="board_bt_style01" value="작성하기" onclick="location.href='javascript:addboard()' " />
 						<input type="button" class="board_bt_style02" value="취소하기" onclick="location.href='javascript:history.go(-1)' " />
 					</td>
 				</tr>
 			</div>
-
-
+		
+		
 		<br /><br />
  </div><!--END Board-->
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>

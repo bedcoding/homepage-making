@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
+<%@ page import="net.board.db2.*" %>
 <%
 	BoardBean board = (BoardBean)request.getAttribute("boarddata");
 %>
@@ -87,7 +87,7 @@ function spamImageChange(){
 
 
 <!-- 게시판 수정 -->
-<form action="BoardModifyAction.bo" method="post" name="modifyform">
+<form action="BoardModifyAction.bo2" method="post" name="modifyform">
 <input type="hidden" name="BOARD_NUM" value=<%=board.getBOARD_NUM() %>>
 <table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
 	

@@ -1,4 +1,4 @@
-<%@ page import="net.board.db.*" %>
+<%@ page import="net.board.db2.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -94,79 +94,6 @@ System.out.println("CHECK(request)------->" + sn);
 		
 		
 <script type="text/javascript" src="lib/js/validation/validation.js"></script>
-
-<!-- 
-<script type="text/javascript">
-
-// 자바스크립트로 게시글 수정/삭제를 구현한 것 (하지만 우리는 MVC2 패턴으로 할 것이므로 아예 날림) 
- 	$(function(){
-		$("#write_img").css("cursor","pointer").bind("click",function(){
-			go_write(1);
-		})
-
-		$("#reply_img").css("cursor","pointer").bind("click",function(){
-			go_write(2);
-		})
-
-		$("#del_img").css("cursor","pointer").bind("click",function(){
-			go_del();
-		})
-	})
-
-	function go_write(n){
-		if (n==2){
-			mode = "reply";
-			location.href="data_writec8e3.html?board_seq=108&amp;board_code=1&amp;mode="+mode;
-		}
-		else{
-			$("#flag").val('edit');
-			$("#pwd_chk").show();
-			mode = "edit"
-		}
-	}
-
-	function go_del(){
-		$("#flag").val('del');
-		$("#pwd_chk").show();
-	}
-
-	function pwd_check(){
-		$.ajax({
-			type: "post",
-			url: "/asp/board/general/_pwd_chk.asp",
-			data: {chk_pwd: $("#chk_pwd").val(), board_seq : 108},
-			dataType: "json",
-			async: true,
-			error: function(xhr){
-						alert('에러발생!!');
-					},
-			success: function(data){
-								if (data == "_ok"){
-									if ($("#flag").val() == "edit"){
-										location.href="data_write1251.html?board_seq=108&amp;board_code=1&amp;mode=edit";
-									}
-									else{
-										real_del();
-									}
-								}
-								else{
-									alert("비밀번호가 일치하지 않습니다");
-									return;
-								}
-						   }
-			});	
-	}
-
-	function real_del(){
-		if (confirm("정말 삭제하시겠습니까?")){
-			$("#del_Frm").attr("target","action_ifrm");
-			$("#del_Frm").attr("action","board/general/view_del.html");
-			$("#del_Frm").submit();
-		}	
-	}
-
- </script>
- -->
 
 <link type="text/css" rel="stylesheet" href="css/board.css" />
 
@@ -273,7 +200,7 @@ System.out.println("CHECK(request)------->" + sn);
 <%
 	if (request.getAttribute("prev") != null) 
 	{
-%>		<a href="./BoardDetailAction.bo?num=<%=p%>"><%=s%></a> <%
+%>		<a href="./BoardDetailAction.bo2?num=<%=p%>"><%=s%></a> <%
     }
 	
 	else
@@ -298,7 +225,7 @@ System.out.println("CHECK(request)------->" + sn);
     {
 %>
  
- <a href="./BoardDetailAction.bo?num=<%=n%>"><%=sn%></a> 
+ <a href="./BoardDetailAction.bo2?num=<%=n%>"><%=sn%></a> 
 <%
     }
 
@@ -344,10 +271,10 @@ System.out.println("CHECK(request)------->" + sn);
 		 </div>
 		<div class="board_btn">
 			<p class="board_fLeft">
-				<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
-				<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/>
+				<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo2?num=<%=board.getBOARD_NUM() %>' " />
+				<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo2?num=<%=board.getBOARD_NUM() %>' "/>
 			</p>
-			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
+			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
 
 		</div>
 		<br /><br />

@@ -7,7 +7,7 @@
 <title>MVC 게시판</title>
 </head>
 <body>
-<form name="deleteForm" action="./BoardDeleteAction.bo?num=<%=num %>" 
+<form name="deleteForm" action="./BoardDeleteAction.bo2?num=<%=num %>" 
 	method="post">
 <table border=1>
 <tr>
