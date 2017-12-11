@@ -60,6 +60,13 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Index.bo")) {
+			action = new IndexAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/BoardDetailAction.bo")) {
 			action = new BoardDetailAction();
 			try {

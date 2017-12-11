@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="net.board.db.*" %>
+<%@ page import="java.io.PrintWriter"%>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	List boardList=(List)request.getAttribute("boardlist");
+%>
+
 
 
 <html>
@@ -21,20 +30,20 @@
  </head>
 
 
- <!-- 게시판 넣기 -->
+<!-- 게시판 넣기 -->
 <script language='javascript' type='text/javascript'>
 
 		//<![CDATA[
 		function doResize(id) 
 		{ 
-		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-		obj.height = obj.contentWindow.document.body.scrollHeight; 
+			var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+			obj.height = obj.contentWindow.document.body.scrollHeight; 
 		}
 		//]]> 
 	</script>
 
- <body>
 
+ <body>
 
  <!--Wrap-->
  <div id="wrap">
@@ -46,25 +55,27 @@
 			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
 			
 			<li><a href="index.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>			
-			<li><a href="GO_NOTICE.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			
+			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+						
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
 			<li><a href="asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/vote_newff79.html?cate_idx=42"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
-			<li><a href="asp/fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+			
+			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
 
 				<%
 					String ida = null;
 					ida = (String) session.getAttribute("loggedID");
-					System.out.println("세션에 저장된 아이디" + ida);
-					if (ida == null) {
-				%><li><a href="GO_LOGIN.jsp"><img
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me"><img
 						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
 				<%
 					} else {
 				%>
-				<li><a href="GO_LOGOUT.jsp"><img
+						<li><a href="logoutaction.me"><img
 						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
 				<%
 					}
@@ -101,30 +112,24 @@
 		
 		
 		<div class="m_notice">
-			<p class="notice_title"><img src="image/main/r_st_title02.jpg" border="0" alt=""><span class="mp_btn"><a href="GO_NOTICE.jsp"><img src="image/main/r_con_plus.jpg" border="0" alt=""></a></span></p>
-
-
-
+			<p class="notice_title"><img src="image/main/r_st_title02.jpg" border="0" alt=""><span class="mp_btn"><a href="BoardList.bo"><img src="image/main/r_con_plus.jpg" border="0" alt=""></a></span></p>
 			
 			<dl class="m_notice_con">
 				
-					<dt><a href="asp/data_view80f7.html?board_seq=32155&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] 2017 �몃��� 1ST WORLD TOUR ��DIAMOND EDGE-��..</a></dt>
-					<dd>2017.08.22</dd>
+				<%
+					for(int i=0; i<6; i++) {
+						BoardBean bl=(BoardBean)boardList.get(i);
+				%>
+						
+					<dt>
+						<a href="./BoardDetailAction.bo?num=<%=bl.getBOARD_NUM()%>">
+							<%=bl.getBOARD_SUBJECT()%>
+						</a>					
+					</dt>
+					
+					<dd> <%=bl.getBOARD_DATE() %> </dd>
+				<%} %>
 				
-					<dt><a href="asp/data_view1094.html?board_seq=32121&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] �ы�대�� 洹�移� 諛� 吏��� ��吏� 愿��� ���� ������.</a></dt>
-					<dd>2017.08.04</dd>
-				
-					<dt><a href="asp/data_view48e1.html?board_seq=32097&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] �몃��댐�OFFICIAL LIGHT STICK CARAT BONG竊��⑤�쇱��..</a></dt>
-					<dd>2017.07.28</dd>
-				
-					<dt><a href="asp/data_viewa2db.html?board_seq=32044&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] 2017 �몃��� 1ST WORLD TOUR ��DIAMOND EDGE-��..</a></dt>
-					<dd>2017.07.10</dd>
-				
-					<dt><a href="asp/data_view2287.html?board_seq=32018&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] �몃��� 怨듭�� �ы�대�� CARAT 2湲� �ы�대�� 臾쇳�� 諛곗�� 愿��� 怨듭�. </a></dt>
-					<dd>2017.06.30</dd>
-				
-					<dt><a href="asp/data_view3313.html?board_seq=32002&amp;parameter=&amp;board_code=1&amp;types=&amp;search_val=&amp;page=1">[NOTICE] 2017 �몃��� 1ST  WORLD TOUR &#39;DIAMOND E..</a></dt>
-					<dd>2017.06.23</dd>
 			</dl>
 			
 		</div>

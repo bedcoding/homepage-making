@@ -13,16 +13,17 @@
   <meta name="Publisher" content="MyelHub">
   <meta name="Description" content="">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=9">
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
   <link type="text/css" rel="stylesheet" href="css/default.css" />
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script type="text/javascript" src="/js/doorer.js"></script>
  </head>
-<%//세션이 있는지 확인
-String id =null;
-id=(String)session.getAttribute("loggedID");
-System.out.println("<login_new.jsp>세션에 저장된 아이디:"+id);
-	%>
+ 
+<%  //세션이 있는지 확인
+	String id =null;
+	id=(String)session.getAttribute("loggedID");
+	System.out.println("<login_new.jsp>세션에 저장된 아이디:"+id);
+%>
  <!--게시판넣기-->
 <script language='javascript' type='text/javascript'>
 
@@ -40,41 +41,39 @@ System.out.println("<login_new.jsp>세션에 저장된 아이디:"+id);
  >
  <!--Wrap-->
  <div id="wrap">
- 
-	<!--div class="black_bg">
-		<div class="black_bg_in">
-			<p><img src="image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
-		</div>
-	</div-->
-
-		
+ 		
 	<p class="m_top"><img src="image/main/main_blue.jpg"border="0" alt=""></p>
 	<!--Header-->
 	<div id="header_new">
 		<ul class="m_menu">
 			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-			<li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<!--li><a href="../index_02.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li-->
-			<li><a href="../profile.jsp"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-			<!--li><a href="javascript:alert('준비중입니다');"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li-->
-			<li><a href="notice_new.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			<li><a href="../schedule.jsp"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			<li><a href="./vote_new.jsp"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-			<!--li><a href="javascript:alert('준비중입니다');"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li-->
-			<li><a href="../fanboard.jsp"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-			<li><a href="../from_st.jsp"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
 			
+			<li><a href="index.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+						
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
+			
+			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
 				<%
-					String ida =null;
-							ida=(String)session.getAttribute("loggedID");
-					System.out.println("세션에 저장된 아이디"+ida);
-						if (ida == null) {
-				%><li><a href="../login_new.me"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디" + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me"><img
+						src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
 				<%
 					} else {
 				%>
-				<li><a href="/logoutaction.me"><img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
-				<%}%>
+						<li><a href="logoutaction.me"><img
+						src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
 			
 			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
 		</ul>
