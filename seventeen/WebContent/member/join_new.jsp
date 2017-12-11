@@ -73,7 +73,7 @@
 				<%
 					String ida = null;
 					ida = (String) session.getAttribute("loggedID");
-					System.out.println("세션에 저장된 아이디" + ida);
+					System.out.println("세션에 저장된 아이디: " + ida);
 					if (ida == null) 
 					{
 				%>		<li><a href="login_new.me"><img
