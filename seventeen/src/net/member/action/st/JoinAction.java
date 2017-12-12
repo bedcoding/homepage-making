@@ -52,9 +52,8 @@ public class JoinAction implements Action{
 			}
 			
 			// 회원가입 성공.
-	
 			forward.setRedirect(true);
-			forward.setPath("./login_me");
+			forward.setPath("./login_new.me");
 			return forward;
 		}
 	}

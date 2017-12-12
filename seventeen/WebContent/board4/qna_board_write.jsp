@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="net.board.db4.BoardBean"%> 
 <%
-	BoardBean board = (BoardBean)request.getAttribute("boarddata");
+	String id=(String)session.getAttribute("loggedID");
+	BoardBean board=(BoardBean)request.getAttribute("boarddata");
+	System.out.println("id 들어왔나 체크: "+id);
 %>
 
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+ <head>
   	<title> SEVENTEEN Official website </title>
   	<meta name="Author" content="minee">
   	<meta name="Publisher" content="MyelHub">
@@ -15,16 +21,19 @@
   	<link type="text/css" rel="stylesheet" href="css/default.css" />
   	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   	<script type="text/javascript" src="/js/doorer.js"></script>
-	<script type="text/javascript">
-	function modifyboard(){
-		modifyform.submit();
+	
+	<script language="javascript">
+	function addboard()
+	{
+		boardform.submit();
 	}
 	</script>
-</head>
 
-<body>
+ </head>
 
-<!--Wrap-->
+ 
+ <body>
+ <!--Wrap-->
  <div id="wrap">	
 	<p class="m_top"><img src="image/main/main_blue.jpg" border="0" alt=""></p>
 	
@@ -58,8 +67,8 @@
 					}
 				%>
 			
-			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>		
-	  </ul>
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+		</ul>
 	</div><!--END Header-->
 	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
 <!--Container-->
@@ -67,16 +76,6 @@
 	<div class="board_01" >
 		<p class="board_title"><img src="image/sub/board_title01.jpg" border="0" alt="notice"></p>
 		
-
-		
-
-<!-- <script type="text/javascript">
-function spamImageChange(){	
-	var now = new Date();
-	$("#spam_img").attr("src", $("#spam_img").attr("src").split('?')[0] + '?x=' + now.toUTCString());
-}
-</script>
- -->  
  
  <link type="text/css" rel="stylesheet" href="css/board.css" />
 
@@ -88,88 +87,59 @@ function spamImageChange(){
 
 <div class="right_cons">
  <div id="board_area" class="pt40" >
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 게시판 수정 -->
-<form action="BoardModifyAction.bo" method="post" name="modifyform">
-<input type="hidden" name="BOARD_NUM" value=<%=board.getBOARD_NUM() %>>
-<table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
-	
 		
-	<tr>
-		<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
-		<td>
-			<input type="text" name="BOARD_NAME" value="<%=board.getBOARD_NAME() %>" class="write_bar_close" readonly>
-			<%-- value에 <%=id %> 추가 --%>
-			<!-- readonly 추가 -->
-		</td>
-		<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
-		<td>
-			<input name="BOARD_PASS" type="password" class="write_bar">
-		</td>
-	</tr>
-	
-	<tr>
-		<th><img src="board_img/t_01.png" width="30" height="14" border="0" alt="제목"></th>
-		<td colspan="3">
-			<input name="BOARD_SUBJECT" maxlength="100" class="write_title" title="title"
-				value="<%=board.getBOARD_SUBJECT()%>">
-		</td>
-	</tr>
-	
-	<%if(!(board.getBOARD_FILE()==null)){ %>
-	<tr>
-		<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="파일첨부"></th>
-		<td colspan="3">
-			&nbsp;&nbsp;<%=board.getBOARD_FILE() %>
-		</td>
-	</tr>
-	<%} %>
-	
-	<tr>
-		<th><img src="board_img/t_06.png" width="30" height="14" border="0" alt="내용"></th>
-		<td colspan="3">
-			<textarea name="BOARD_CONTENT" class="write_texta" title="">
-			<%=board.getBOARD_CONTENT() %>
-			</textarea>
-		</td>
-	</tr>
-
-	
-<!-- 
-	<tr align="center" valign="middle">
-		<td colspan="5">
-			<font size=2>
-			<a href="javascript:modifyboard()">[수정]</a>&nbsp;&nbsp;
-			<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
-			</font>
-		</td>
-	</tr> -->
-	
-</table>
-</form>
-
+		
+		<form action="./BoardAddAction.bo4" method="post" enctype="multipart/form-data" name="boardform">
+			<table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
+				
+ 				<tr>
+					<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
+					<td>
+						<input type="text" name="BOARD_NAME" value="<%=id %>" readonly class="write_bar_close">
+					</td>
+					<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
+					<td><input type="password" class="write_bar" name="BOARD_PASS" value="" />				
+					</td>
+				</tr>
+				
+				<tr>
+					<th><img src="board_img/t_01.png" width="30" height="14" border="0" alt="제 목"></th>
+					<td colspan="3">
+					<input type="text" class="write_title" title="title"  name="BOARD_SUBJECT" value="" />
+					</td>
+				</tr>
+				
+				<tr>
+					<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="파일첨부"></th>
+					<td colspan="3">
+					<input type="file" name="BOARD_FILE" class="write_file" >
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<th><img src="board_img/t_06.png" width="30" height="14" border="0" alt="내 용"></th>
+					<td colspan="3">
+					<textarea name="BOARD_CONTENT" class="write_texta" title="">
+					
+					</textarea>
+					</td>
+				</tr>
+			</table>
+		</form>
+			
+			
 			<!--Button-->
 			<div class="board_btn"> 
 				<tr align="center" valign="middle">
 					<td colspan="5">
-						<input type="button" class="board_bt_style01" value="수정하기" onclick="location.href='javascript:modifyboard()' " />
+						<input type="button" class="board_bt_style01" value="작성하기" onclick="location.href='javascript:addboard()' " />
 						<input type="button" class="board_bt_style02" value="취소하기" onclick="location.href='javascript:history.go(-1)' " />
 					</td>
 				</tr>
 			</div>
-
-
+		
+		
 		<br /><br />
  </div><!--END Board-->
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>

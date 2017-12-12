@@ -49,14 +49,13 @@
 		<ul class="m_menu">
 			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
 			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-						
+			<li><a href="Profile.bo"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
 			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
-			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="Vote.bo"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
 			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-
+			
 				<%
 					String ida = null;
 					ida = (String) session.getAttribute("loggedID");
@@ -258,14 +257,20 @@
 
 		//if (!check.nullcheck("re_pwd", "비밀번호 확인")) return;
 
-		if ($("#pwd").val() != $("#re_pwd").val()){
+		if ($("#pwd").val() != $("#re_pwd").val())
+		{
 			$("#pwd_ck").val("N")
 			alert("Passwords do not match");
 			return;
 		}
-		else{
+		
+		else
+		{
 			$("#pwd_ck").val("Y");
 		}
+		
+		
+		
 		if ($("#pwd_ck").val() == "N"){
 			alert("Please, match the password");
 			return;
@@ -305,6 +310,9 @@
 
 		$("#join_Frm").attr({"target":"action_ifrm","action":"./joinaction.me"});
 		$("#join_Frm").submit();
+		
+		alert("회원가입 성공!");
+		location.href = './login_new.me';
 	}
 
 
@@ -322,11 +330,13 @@
 	<div class="join01">
 		<p class="join_title"><img src="image/member/join.png" alt=""/></p>
 		<div class="join_contents">
+
+
 		<form name="join_Frm" id="join_Frm" method="post" >
 		<input type="hidden" name="pwd_ck" id="pwd_ck" value="N">
 		<input type="hidden" name="id_ck" id="id_ck" value="N">
 		<input type="hidden" name="email_ck" id="email_ck" value="N">
-		<input type="hidden" name="nick_ck" id="nick_ck" value="N">
+		<!-- <input type="hidden" name="nick_ck" id="nick_ck" value="N"> -->
 		<input type="hidden" name="flag" id="flag" value="for">
 		<!-- <input type="hidden" name="onechk" id="onechk" value=""> -->
 		<input type="hidden" name="charset" id="charset" value="eng">
@@ -371,9 +381,9 @@
 		</form>
 
 	<p class="btn a_center mt30 mb30">
-		<a href="./login_new.me">
-		<img src="image/member/btn_ok_en.jpg" alt="" id="submit_img" />
-		</a> 
+		<!-- <a href="./login_new.me"> -->
+			<img src="image/member/btn_ok_en.jpg" alt="" id="submit_img" />
+		<!-- </a> -->
 	
 		<a href="./login_new.me">
 			<img src="image/member/btn_can_en.jpg" />

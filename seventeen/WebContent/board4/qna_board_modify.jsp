@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
+<%@ page import="net.board.db4.*" %>
 <%
 	BoardBean board = (BoardBean)request.getAttribute("boarddata");
 %>
@@ -66,18 +66,7 @@
 <div id="container_msub">
 	<div class="board_01" >
 		<p class="board_title"><img src="image/sub/board_title01.jpg" border="0" alt="notice"></p>
-		
-
-		
-
-<!-- <script type="text/javascript">
-function spamImageChange(){	
-	var now = new Date();
-	$("#spam_img").attr("src", $("#spam_img").attr("src").split('?')[0] + '?x=' + now.toUTCString());
-}
-</script>
- -->  
- 
+		 
  <link type="text/css" rel="stylesheet" href="css/board.css" />
 
 	<div id="s_container">
@@ -101,7 +90,7 @@ function spamImageChange(){
 
 
 <!-- 게시판 수정 -->
-<form action="BoardModifyAction.bo" method="post" name="modifyform">
+<form action="BoardModifyAction.bo4" method="post" name="modifyform">
 <input type="hidden" name="BOARD_NUM" value=<%=board.getBOARD_NUM() %>>
 <table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
 	
@@ -144,17 +133,6 @@ function spamImageChange(){
 			</textarea>
 		</td>
 	</tr>
-
-	
-<!-- 
-	<tr align="center" valign="middle">
-		<td colspan="5">
-			<font size=2>
-			<a href="javascript:modifyboard()">[수정]</a>&nbsp;&nbsp;
-			<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
-			</font>
-		</td>
-	</tr> -->
 	
 </table>
 </form>

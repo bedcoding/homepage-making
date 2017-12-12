@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="net.board.db.*" %>
+<%@ page import="net.board.db3.*" %>
 <%@ page import="java.io.PrintWriter"%>
 
 <%
@@ -83,16 +83,11 @@
 
 <!--Container-->
 		<div id="container_msub">
-			<ul class="notice_new_btn">
-				<li class="bdl"><a href="BoardList.bo" class="b_on">NOTICE</a></li>
-				<li><a href="BoardList.bo2">APPLICATION</a></li>
-			</ul>
-			
-			
+						
 			<div class="board_01">
 
 				<p class="board_title">
-					<img src="image/sub/board_title01.jpg" border="0" alt="notice">
+					<img src="image/sub/board_title02.jpg" border="0" alt="fanboard">
 				</p>
 
 				<link type="text/css" rel="stylesheet" href="/css/board.css" />
@@ -235,7 +230,7 @@
 						<div class="board_search">
 						
 						
-                     <form name="search_Frm" id="search_Frm" action="BoardList.bo"
+                     <form name="search_Frm" id="search_Frm" action="BoardList.bo3"
                         method="POST">
                         <input type="hidden" name="board_code" value="1"> <select
                            name="types" id="types">
@@ -270,26 +265,6 @@
 								</tr>
 							</thead>
 
-
-<!-- 
-         <tr style = "text-align:center;">
-            <td>
-            <span class="notice_bg"> <img src="board_img/notice.png" border="0" alt=""></span></td>
-            
-            <td class="title_area">
-           
-           
-               <a href="/data_view.jsp?board_seq=31926&parameter=&board_code=1&types=&search_val=&page=1">
-               		[NOTICE] 안녕하세요, 플레디스 입니다. 
-               </a>
-            </td>
-
-            <td>2017.06.05</td>
-            <td class="board_data">STAFF</td>
-         </tr>
--->
-        
-         
  
 						<%
 							for(int i=0;i<boardList.size();i++) {
@@ -303,7 +278,7 @@
 										<!-- 비밀글일때 아이콘 붙는것 --> 
 										
 									<a
-										href="./BoardDetailAction.bo?num=<%=bl.getBOARD_NUM()%>">
+										href="./BoardDetailAction.bo3?num=<%=bl.getBOARD_NUM()%>">
 											<%=bl.getBOARD_SUBJECT()%>
 
 									</a>
@@ -339,7 +314,7 @@
 			
 			<!-- ◁◁ 이전 버튼1 -->
 			<a 
-				href="./BoardList.bo?page=<%=1 %>">
+				href="./BoardList.bo3?page=<%=1 %>">
 				<img src='board_img/arrow_l_end.gif' border='0' alt=''>
 			</a>
 			&nbsp; 
@@ -364,7 +339,7 @@
 			
 			<!-- ◁ 이전 버튼2 -->
 			<a 
-				href="./BoardList.bo?page=<%=nowpage-1 %>">
+				href="./BoardList.bo3?page=<%=nowpage-1 %>">
 				<img src='board_img/arrow_l.gif' border='0' alt=''>
 			</a>
 			&nbsp; 
@@ -384,7 +359,7 @@
 				
 				else
 				{ %> 
-				<a href="./BoardList.bo?page=<%=a%>"> <%=a%> </a>
+				<a href="./BoardList.bo3?page=<%=a%>"> <%=a%> </a>
 				&nbsp;
 				<%} %> 
 			<%} %> 
@@ -403,7 +378,7 @@
 				else
 				{ %> 
 				<a
-					href="./BoardList.bo?page=<%=nowpage+1 %>">
+					href="./BoardList.bo3?page=<%=nowpage+1 %>">
 					<img src='board_img/arrow_r.gif' border='0' alt=''>
 				</a>
 			  <%} %>
@@ -422,7 +397,7 @@
 				else
 				{ %> 
 				<a
-					href="./BoardList.bo?page=<%=maxpage %>">
+					href="./BoardList.bo3?page=<%=maxpage %>">
 					<img src='board_img/arrow_r_end.gif' border='0' alt=''>
 				</a>
 			  <%} %>
@@ -437,10 +412,10 @@
 				<%
 					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
 					
-					if(ida!=null && ida.equals("admin")) 
+					if(ida!=null) 
 					{	
 				%> 		<div class="board_btn2">	
-							<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo'"/>
+							<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo3'"/>
 						</div> 
 				<%  } 
 			

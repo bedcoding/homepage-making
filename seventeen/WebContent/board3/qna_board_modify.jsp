@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
+<%@ page import="net.board.db3.*" %>
 <%
 	BoardBean board = (BoardBean)request.getAttribute("boarddata");
 %>
@@ -101,7 +101,7 @@ function spamImageChange(){
 
 
 <!-- 게시판 수정 -->
-<form action="BoardModifyAction.bo" method="post" name="modifyform">
+<form action="BoardModifyAction.bo3" method="post" name="modifyform">
 <input type="hidden" name="BOARD_NUM" value=<%=board.getBOARD_NUM() %>>
 <table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
 	
@@ -144,17 +144,6 @@ function spamImageChange(){
 			</textarea>
 		</td>
 	</tr>
-
-	
-<!-- 
-	<tr align="center" valign="middle">
-		<td colspan="5">
-			<font size=2>
-			<a href="javascript:modifyboard()">[수정]</a>&nbsp;&nbsp;
-			<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
-			</font>
-		</td>
-	</tr> -->
 	
 </table>
 </form>

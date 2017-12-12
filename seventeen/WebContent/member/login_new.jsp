@@ -48,14 +48,13 @@
 		<ul class="m_menu">
 			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
 			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-						
+			<li><a href="Profile.bo"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
 			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
-			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="Vote.bo"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
 			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
 			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-
+			
 				<%
 					String ida = null;
 					ida = (String) session.getAttribute("loggedID");
@@ -146,11 +145,17 @@
 				<input type="password" class="dh_in01" name="pwd" id="pwd" onkeypress="enters(function(){go_login()});" /></li>
 				</form>
 			</ul>
+			
+			
 			<p class="dh_btn"><img src="image/member/adm_btn.jpg" alt="login" id="submit_img" /></p>
+			
+			<!-- 
 			<ul class="btns01">
 				<li><a href="./id.jsp"><img src="image/member/btn_id.png" alt="아이디찾기"/></a></li>
 				<li><a href="./pass.jsp"><img src="image/member/btn_pass.png" alt="비밀번호 찾기"/></a></li>
 			</ul>
+			 -->
+			
 			<p class="btns02"><a href="./join_new.me"><img src="image/member/btn_join.png" alt="회원가입하기"/></a></p>
 		</div><!--END login -->
 

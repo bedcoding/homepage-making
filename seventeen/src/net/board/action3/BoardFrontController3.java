@@ -1,4 +1,4 @@
-package net.board.action;
+package net.board.action3;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BoardFrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
+public class BoardFrontController3 extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
@@ -17,74 +17,57 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 		Action action = null;
 
 		System.out.println("디버깅>>"+command);
-		if (command.equals("/BoardWrite.bo")) {
+		if (command.equals("/BoardWrite.bo3")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./board/qna_board_write.jsp");
-		} else if (command.equals("/BoardDelete.bo")) {
+			forward.setPath("./board3/qna_board_write.jsp");
+		} else if (command.equals("/BoardDelete.bo3")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./board/qna_board_delete.jsp");
-		} else if (command.equals("/BoardModify.bo")) {
+			forward.setPath("./board3/qna_board_delete.jsp");
+		} else if (command.equals("/BoardModify.bo3")) {
 			action = new BoardModifyView();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/BoardAddAction.bo")) {
+		} else if (command.equals("/BoardAddAction.bo3")) {
 			action = new BoardAddAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/BoardModifyAction.bo")) {
+		} else if (command.equals("/BoardModifyAction.bo3")) {
 			action = new BoardModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/BoardDeleteAction.bo")) {
+		} else if (command.equals("/BoardDeleteAction.bo3")) {
 			action = new BoardDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/BoardList.bo")) {
+		} else if (command.equals("/BoardList.bo3")) {
 			action = new BoardListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/Index.bo")) {
-			action = new IndexAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/BoardDetailAction.bo")) {
+		} else if (command.equals("/BoardDetailAction.bo3")) {
 			action = new BoardDetailAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/Profile.bo")) {
-			forward = new ActionForward();	//DB접근 안하고(액션클래스 안들어가고 바로 뷰페이지로) 그냥 들어가는거라 아무거나 집어넣음
-			forward.setRedirect(false);
-			forward.setPath("./profile.jsp");
-		} else if (command.equals("/Vote.bo")) {
-			forward = new ActionForward();	//DB접근 안하고(액션클래스 안들어가고 바로 뷰페이지로) 그냥 들어가는거라 아무거나 집어넣음
-			forward.setRedirect(false);
-			forward.setPath("./vote.jsp");
 		}
-		
-		
 
 		if (forward.isRedirect()) {
 			response.sendRedirect(forward.getPath());
