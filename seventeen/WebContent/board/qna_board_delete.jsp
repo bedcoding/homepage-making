@@ -1,60 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="net.board.db.*" %>
-<%
-	int num=Integer.parseInt(request.getParameter("num"));
-	BoardBean board = (BoardBean)request.getAttribute("boarddata");
 
+
+<%
+   int num=Integer.parseInt(request.getParameter("num"));
 %>
 <html>
 <head>
-<title>MVC 게시판</title>
+<title> SEVENTEEN Official website </title>
+     <meta name="Author" content="minee">
+     <meta name="Publisher" content="MyelHub">
+     <meta name="Description" content="">
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=9">
+     <link type="text/css" rel="stylesheet" href="css/default.css" />
+ <!--     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
+  <!--    <script type="text/javascript" src="/js/doorer.js"></script> -->
+   <script type="text/javascript">
+   function windowclose(){
+      window.close();
+   }
+   </script>
+   
 </head>
+
+
+
 <body>
+<!--Container-->
+
+
 <form name="deleteForm" action="./BoardDeleteAction.bo?num=<%=num %>" 
-	method="post">
-<table border=1>
+   method="post">
 
-<%
-	String ida = null;
-	ida = (String) session.getAttribute("loggedID");
-	System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
-
-	if(ida!=null && ida.equals("admin")) 
-	{	
-%> 		<tr>
-			<td>
-				<font size=2>글 비밀번호 : </font>
-			</td>
-			
-			<td>
-				<input name="BOARD_PASS" type="password">
-			</td>
-		</tr>
-		<tr>
-			<td colspan=2 align=center>
-				<a href="javascript:deleteForm.submit()">삭제</a>
-				&nbsp;&nbsp;
-				<a href="javascript:history.go(-1)">돌아가기</a>
-			</td>
-		</tr>
-<%  } 
-
-	else 
-	{
-%>		<tr>
-			<td colspan=2 align=center>
-				삭제할 권한이 없습니다. <br>
-				&nbsp;&nbsp;
-				<a href="javascript:history.go(-1)">돌아가기</a>
-			</td>
-		</tr>		
-<%	}  
-%>
-
-
-
-
+   <br>
+<table border="1">
+<tr>
+   <td>
+      <font size=2>글 비밀번호 : </font>
+   </td>
+   <td>
+      <input name="BOARD_PASS" type="password">
+   </td>
+</tr>
+<tr >
+   <td colspan=2 align=center>
+      <a href="javascript:deleteForm.submit()"><img src="./image/sub/pop_regist.gif" border="0" alt=""></a>
+      &nbsp;&nbsp;
+      <a href="javascript:windowclose();"><img src="./image/sub/pop_cancel.gif" border="0" alt=""></a>
+   </td>
+</tr>
 </table>
 </form>
+
+
 </body>
+   
+   
+   
+   
 </html>

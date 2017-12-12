@@ -40,6 +40,10 @@ System.out.println("CHECK(request)------->" + sn);
   <script type="text/javascript" src="/js/doorer.js"></script>
  </head>
 
+
+
+
+
  <!--게시판넣기-->
 <script language='javascript' type='text/javascript'>
 
@@ -50,11 +54,21 @@ System.out.println("CHECK(request)------->" + sn);
       obj.height = obj.contentWindow.document.body.scrollHeight; 
       }
       //]]> 
+      
+      
+      
+      
+    //글삭제하기 윈도우창
+      function openwin_del()
+      {
+         var url = "BoardDelete.bo?num=<%=board.getBOARD_NUM() %>";
+        
+         //글삭제 jsp열
+         window.open(url, "비밀번호 입력", "width=450 height=100");  
+      }
    </script>
 
- <body
- 
- >
+ <body>
  <!--Wrap-->
  <div id="wrap">
       
@@ -360,7 +374,8 @@ System.out.println("CHECK(request)------->" + sn);
 						<div class="board_btn">
 							<p class="board_fLeft">
 								<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
-								<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/>
+								<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="openwin_del()"/>
+								<%-- <input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/> --%>
 							</p>
 							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
 						</div>
