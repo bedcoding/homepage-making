@@ -26,7 +26,6 @@ public class BoardAddAction implements Action {
    		boolean result=false;
    		
    		try{
-   			
    			MultipartRequest multi=null;
    			
    			multi=new MultipartRequest(request,
@@ -40,7 +39,7 @@ public class BoardAddAction implements Action {
 	   		boarddata.setBOARD_SUBJECT(multi.getParameter("BOARD_SUBJECT"));
 	   		boarddata.setBOARD_CONTENT(multi.getParameter("BOARD_CONTENT"));
 	   		boarddata.setBOARD_FILE(
-	   				multi.getFilesystemName((String)multi.getFileNames().nextElement()));
+	   		multi.getFilesystemName((String)multi.getFileNames().nextElement()));
 	   		
 	   		result=boarddao.boardInsert(boarddata);
 	   		

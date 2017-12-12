@@ -350,14 +350,34 @@ System.out.println("CHECK(request)------->" + sn);
 		  </table>
 		  </div>
 		 </div>
-		<div class="board_btn">
-			<p class="board_fLeft">
-				<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
-				<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/>
-			</p>
-			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
+		 
+		 
+				<%
+					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
+					
+					if(ida!=null && ida.equals("admin")) 
+					{	
+				%> 		
+						<div class="board_btn">
+							<p class="board_fLeft">
+								<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
+								<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/>
+							</p>
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
+						</div>
+				<%  } 
+				
+					else 
+					{
+				%>
+						<div class="board_btn">
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
+						</div>
+				<%
+				 	}				  
+				%>
 
-		</div>
+		
 		<br /><br />
  </div><!--END Board-->
 <form name="del_Frm" id="del_Frm" method="post" >

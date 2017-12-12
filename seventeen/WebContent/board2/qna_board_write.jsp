@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="net.board.db2.BoardBean"%> 
+<%
+	String id=(String)session.getAttribute("loggedID");
+	BoardBean board=(BoardBean)request.getAttribute("boarddata");
+	System.out.println("id 들어왔나 체크: "+id);
+%>
 
 
 
@@ -26,20 +31,6 @@
 
  </head>
 
- <!--게시판넣기-->
-<!-- 
-<script language='javascript' type='text/javascript'>
-
-		//<![CDATA[
-		function doResize(id) 
-		{ 
-		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-		obj.height = obj.contentWindow.document.body.scrollHeight; 
-		}
-		//]]> 
-	</script>
-
- --> 
  
  <body>
  <!--Wrap-->
@@ -50,16 +41,34 @@
 	<!--Header-->
 	<div id="header_new">
 		<ul class="m_menu">
-			<li><img src="image/common/menu/menu_left.jpg" border="0" alt=""></li>
-			<li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/notice_new.html"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/vote_new.html?cate_idx=42"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/logout.html"><img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
-			<li><img src="image/common/menu/menu_right.jpg" border="0" alt=""></li>
+			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+						
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
+			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
 		</ul>
 	</div><!--END Header-->
 	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
@@ -93,32 +102,17 @@ function spamImageChange(){
 		
 		<form action="./BoardAddAction.bo2" method="post" enctype="multipart/form-data" name="boardform">
 			<table cellpadding="0" cellspacing="0" class="free_board_view" summary="" >
-			
-<!-- 			<colgroup>
-				<col width="80"/><col width="280"/><col width="80"/><col width=""/>
-			</colgroup>
-			-->
-			
 				
  				<tr>
 					<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
 					<td>
-						<input type="text" name="BOARD_NAME" value="" class="write_bar_close">
+						<input type="text" name="BOARD_NAME" value="<%=id %>" readonly class="write_bar_close">
 					</td>
 					<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
 					<td><input type="password" class="write_bar" name="BOARD_PASS" value="" />				
 					</td>
 				</tr>
-				<!-- 비밀글 체크하기 -->
-<!-- 
-				<tr style="display:none;">			
-					<th style="margin-left:-100px;"> <img src="../board_img/t_100.png" alt="" style="vertical-align:center;"/></th>
-					<td colspan="3" style="">
-						<input type="checkbox" checked name="secret_flag" id="secret_flag" value="0" /> 비밀글 설정하기 (체크하시면 비밀글로 설정 됩니다.)
-					</td>
-				</tr>
- -->
- 				<!-- 비밀글 체크하기 끝-->
+				
 				<tr>
 					<th><img src="board_img/t_01.png" width="30" height="14" border="0" alt="제 목"></th>
 					<td colspan="3">
@@ -142,38 +136,8 @@ function spamImageChange(){
 					</textarea>
 					</td>
 				</tr>
-				
-				<!-- 스팸방지
-				<tr> 
-					<td align="center" height="40">
-					<img src="../board_img/t_sp.png" width="41" height="14" border="0" alt="스팸방지"></td>
-					<td colspan="3">
-					<input name="spam_cut" id="spam_cut" type="text" size="20" maxlength="6"  class="write_bar" style="ime-mode:disabled; text-transform:uppercase;">
-					<a onclick="spamImageChange();" style="cursor:pointer;"> &nbsp;이미지 재생성&nbsp;</a>
-					<img src="/spam/captcha.asp" name="spam_img" id="spam_img" align="absmiddle" style="margin:0 0px 0 0;"></td>
-				</tr>
-	 			-->
-	 			
-	 			<!--Button-->
-			<!-- <div class="board_btn"> -->
-			
-		<!-- 
-				<a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp;
-				<a href="javascript:history.go(-1)">[뒤로]</a>
-		 -->	
-		 
-			<!-- 
-				<input type="button" class="board_bt_style01" value="작성하기" onclick="location.href='javascript:addboard()' " />
-				<input type="button" class="board_bt_style02" value="취소하기" onclick="location.href='javascript:history.go(-1)' " />
-			 -->
-			
-			<!-- 		
-				<input type="button" class="board_bt_style01" title="" value="작성하기" name="write_img" id="write_img" />
-				<input type="button" class="board_bt_style02" title="" value="취소하기" name="" onClick="window.location='../asp/fanboard.asp'" />
-		 	-->		
-			
-				</table>
-						</form>
+			</table>
+		</form>
 			
 			
 			<!--Button-->

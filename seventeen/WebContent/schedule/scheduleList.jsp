@@ -9,9 +9,9 @@
 
 <html>
 <head>
-<title>스케줄관리</title>
-
+	<title>스케줄관리</title>
 </head>
+
 <body>
    <center>
       <table width="500" align="center" bgcolor="#eaf3f8" border=1 frame=box
@@ -32,7 +32,6 @@
             	  <input type="hidden" value=<%=sc.getSc_num()%> name="sc_num"> <br>
                   <input type="submit" value="수정" />
                   <input type="submit" value="삭제" /> <br> <br>
-                  
                </form>
           
 			</td>
@@ -98,12 +97,10 @@
             <option value="29">29</option>
             <option value="30">30</option>
             <option value="31">31</option>
-         </select>일 - 일정 : <input type=text name="c"> <input type=submit
-            value="추가">
+         </select>일 - 일정 : <input type=text name="c"> <input type=submit value="추가">
       </form>
       <hr>
-      <br> <a href="ShowSc.sc" style="text-decoration: none">스케줄
-         페이지로</a>
+      <br> <a href="ShowSc.sc" style="text-decoration: none">스케줄 페이지로</a>
    </center>
 </body>
 </html>

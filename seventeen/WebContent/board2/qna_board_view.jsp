@@ -10,12 +10,12 @@ if (request.getAttribute("prev") != null) {
    p = (Integer) request.getAttribute("prev");
    System.out.println("CHECK(request)------->" + p);
 }
-String s = "음음음";
+String s = "board_view 테스트";
 
 s = (String) request.getAttribute("prevSub");
 System.out.println("CHECK(request)------->" + s);
 
-int n =1; String sn = "음음음음";
+int n =1; String sn = "board_view 테스트2";
 
 if(request.getAttribute("next")!=null){
    n = (Integer) request.getAttribute("next");
@@ -57,31 +57,39 @@ System.out.println("CHECK(request)------->" + sn);
  >
  <!--Wrap-->
  <div id="wrap">
- 
-   <!--div class="black_bg">
-      <div class="black_bg_in">
-         <p><img src="image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
-      </div>
-   </div-->
-
       
    <p class="m_top"><img src="image/main/main_blue.jpg"border="0" alt=""></p>
    <!--Header-->
    <div id="header_new">
       <ul class="m_menu">
-         <li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-         <li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-         <li><a href="./profile.jsp"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-         <li><a href="GO_NOTICE.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-         
-         <li><a href="./schedule.jsp"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-         <li><a href="./vote_new.jsp"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-         <li><a href="./fanboard.jsp"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-         <li><a href="./from_st.jsp"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-         
-         <li><a href="./login_new.me"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
-         
-         <li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+						
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
+			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
       </ul>
    </div><!--END Header-->
    
@@ -141,10 +149,6 @@ System.out.println("CHECK(request)------->" + sn);
 				<tr>
 					<th><img src="board_img/t_05.png" width="41" height="14" border="0" alt="첨부파일"></th>
 					<td style="padding-left:10px;" >	
-						
-									<!--<img src="/board_img/file/jpg.gif">-->
-								
-									<!--<img src="../board_img/document-wordpdfexceljpg.gif" width="16" height="16" border="0" alt="">-->
 								
 							<input type="hidden" name="file_seq" id="file_seq" value="15">
 								
@@ -269,14 +273,33 @@ System.out.println("CHECK(request)------->" + sn);
 		  </table>
 		  </div>
 		 </div>
-		<div class="board_btn">
-			<p class="board_fLeft">
-				<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo2?num=<%=board.getBOARD_NUM() %>' " />
-				<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo2?num=<%=board.getBOARD_NUM() %>' "/>
-			</p>
-			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
+		 
+		 
+				<%
+					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
+					
+					if(ida!=null && ida.equals("admin")) 
+					{	
+				%> 		
+						<div class="board_btn">
+							<p class="board_fLeft">
+								<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo2?num=<%=board.getBOARD_NUM() %>' " />
+								<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo2?num=<%=board.getBOARD_NUM() %>' "/>
+							</p>
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
+						</div>
+				<%  } 
+				
+					else 
+					{
+				%>		<div class="board_btn">
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
+						</div>
+				<%
+				 	}
+				%>
 
-		</div>
+		
 		<br /><br />
  </div><!--END Board-->
 <form name="del_Frm" id="del_Frm" method="post" >

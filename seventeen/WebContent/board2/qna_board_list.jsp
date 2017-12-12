@@ -5,6 +5,7 @@
 <%@ page import="java.io.PrintWriter"%>
 
 <%
+	request.setCharacterEncoding("UTF-8");
 	List boardList=(List)request.getAttribute("boardlist");
 	int listcount=((Integer)request.getAttribute("listcount")).intValue();
 	int nowpage=((Integer)request.getAttribute("page")).intValue();
@@ -33,15 +34,14 @@
       //<![CDATA[
       function doResize(id) 
       { 
-      var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-      obj.height = obj.contentWindow.document.body.scrollHeight; 
+     	 var obj = (typeof(id)=='string')?document.getElementById(id):id; 
+     	 obj.height = obj.contentWindow.document.body.scrollHeight; 
       }
       //]]> 
    </script>
-
- <body
- 
- >
+   
+   
+ <body>
  <!--Wrap-->
  <div id="wrap">
        
@@ -49,19 +49,34 @@
    <!--Header-->
    <div id="header_new">
       <ul class="m_menu">
-         <li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-         <li><a href="index.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-         <li><a href="../profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-         <li><a href="GO_NOTICE.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-         
-         <li><a href="../schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-         <li><a href="./vote_new.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-         <li><a href="../fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-         <li><a href="../from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-         
-         <li><a href="../login_new.jsp"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
-         
-         <li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+						<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+						
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
+			<li><a href="asp/vote.html"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
       </ul>
    </div><!--END Header-->
    <iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
@@ -70,9 +85,8 @@
 <!--Container-->
 		<div id="container_msub">
 			<ul class="notice_new_btn">
-				<li><a href="GO_NOTICE.jsp">NOTICE</a></li>
-				<li class="bdl"><a href="GO_APPLICATION.jsp" class="b_on">APPLICATION</a></li>
-				
+				<li> <a href="BoardList.bo">NOTICE</a></li>
+				<li class="bdl"><a href="BoardList.bo2" class="b_on">APPLICATION</a></li>
 			</ul>
 			
 			
@@ -151,6 +165,7 @@
          {
             $("#pwd_chk"+(j)).show();
          }
+         
          else{
             $("#pwd_chk3").hide();
          }
@@ -159,6 +174,7 @@
          {
             $("#pwd_chk"+(j)).show();
          }
+         
          else{
             $("#pwd_chk4").hide();
          }
@@ -167,6 +183,7 @@
          {
             $("#pwd_chk"+(j)).show();
          }
+         
          else{
             $("#pwd_chk5").hide();
          }
@@ -210,7 +227,6 @@
          else{
             $("#pwd_chk10").hide();
          }
-      
    }
 
 </script>
@@ -218,19 +234,24 @@
 				<div class="right_cons">
 					<div id="board_area">
 						<div class="board_search">
-							<form name="search_Frm" id="search_Frm" action="/notice_new.jsp"
-								method="get">
-								<input type="hidden" name="board_code" value="1"> <select
-									name="types" id="types">
-									<option value="">전체</option>
-									<option value="title">제목</option>
-									<option value="CONTENTS">내용</option>
-								</select> <input type="text" name="search_val" id="search_val" value=""
-									class="board_bottom_bar"> <input type="button"
-									class="board_bt_style03" title="" value="검색" name=""
-									id="search_img">
-							</form>
-						</div>
+						
+						
+                     <form name="search_Frm" id="search_Frm" action="BoardList.bo2"
+                        method="POST">
+                        <input type="hidden" name="board_code" value="1"> <select
+                           name="types" id="types">
+                           <option value="0">전체</option>
+                           <option value="1">제목</option>
+                           <option value="2">내용</option>
+                        </select> <input type="text" name="search_val" id="search_val" value=""
+                           class="board_bottom_bar"> <input type="submit"
+                           class="board_bt_style03" title="" value="검색" name=""
+                           id="search_img">
+                     </form>
+                   
+                   
+                     
+                   </div>
 						<!--Board_list-->
 						<table cellpadding="0" cellspacing="0" class="free_board"
 							summary="">
@@ -250,27 +271,6 @@
 								</tr>
 							</thead>
 
-
-
-
-         <tr style = "text-align:center;">
-            <td>
-            <span class="notice_bg"> <img src="board_img/notice.png" border="0" alt=""></span></td>
-            
-            <td class="title_area">
-           
-           
-               <a href="/data_view.jsp?board_seq=31926&parameter=&board_code=1&types=&search_val=&page=1">
-               		[NOTICE] 안녕하세요, 플레디스 입니다. 
-               </a>
-            </td>
-
-            <td>2017.06.05</td>
-            <td class="board_data">STAFF</td>
-         </tr>
-         
-        
-         
  
 						<%
 							for(int i=0;i<boardList.size();i++) {
@@ -281,7 +281,9 @@
 								<tr>
 									<td><%=bl.getBOARD_NUM()%></td>
 									<td class="title_area">
-										<!-- 비밀글일때 아이콘 붙는것 --> <a
+										<!-- 비밀글일때 아이콘 붙는것 --> 
+										
+									<a
 										href="./BoardDetailAction.bo2?num=<%=bl.getBOARD_NUM()%>">
 											<%=bl.getBOARD_SUBJECT()%>
 
@@ -413,10 +415,21 @@
 
 
 
-	<div class="board_btn2">	
-		<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo2'"/>
-	</div> 
-
+				<%
+					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
+					
+					if(ida!=null && ida.equals("admin")) 
+					{	
+				%> 		<div class="board_btn2">	
+							<input type="button" class="board_bt_style01" title="" value="글쓰기" name="" onClick="location='./BoardWrite.bo2'"/>
+						</div> 
+				<%  } 
+			
+					else 
+					{
+						
+				 	}  
+				%>
 
 </div> <!--END Board-->
 
@@ -505,4 +518,5 @@ $(function(){
    });
 });
 </script>
+
 </html>
