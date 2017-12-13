@@ -53,7 +53,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				if (rs.getString(2).equals(member.getPassword())) {
+				if (rs.getString(3).equals(member.getPassword())) {
 					result = 1;// 일치.
 					System.out.println("비밀 번호 까지 확인");
 				} else {
