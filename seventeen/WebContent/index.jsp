@@ -113,11 +113,15 @@
 			
 			<dl class="m_notice_con">
 				
+				
+				<!-- 1) 만약 테이블에 값이 6개보다 적다면 전체출력을 해야 한다 -->
 				<%
-					for(int i=0; i<6; i++) {
+				if(boardList.size() < 6)
+				{
+					for(int i=0; i<boardList.size(); i++) 
+					{
 						BoardBean bl=(BoardBean)boardList.get(i);
-				%>
-						
+				%>	
 					<dt>
 						<a href="./BoardDetailAction.bo?num=<%=bl.getBOARD_NUM()%>">
 							<%=bl.getBOARD_SUBJECT()%>
@@ -125,7 +129,32 @@
 					</dt>
 					
 					<dd> <%=bl.getBOARD_DATE() %> </dd>
-				<%} %>
+				<%  } 
+				}
+				
+				
+				
+				// 2) 만약 테이블에 값이 6개보다 많다면 6개만 출력해야 한다 -->
+				else
+				{
+					for(int i=0; i<6; i++) 
+					{
+						BoardBean bl=(BoardBean)boardList.get(i);
+				%>	
+					<dt>
+						<a href="./BoardDetailAction.bo?num=<%=bl.getBOARD_NUM()%>">
+							<%=bl.getBOARD_SUBJECT()%>
+						</a>					
+					</dt>
+					
+					<dd> <%=bl.getBOARD_DATE() %> </dd>
+				<%  } 
+				}
+				%>
+					
+				
+						
+
 				
 			</dl>
 			
