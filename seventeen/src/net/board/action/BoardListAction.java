@@ -7,40 +7,55 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.board.db.BoardDAO;
 
- public class BoardListAction implements Action {
-	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		BoardDAO boarddao=new BoardDAO();
-		List boardlist=new ArrayList();
-		
-	  	int page=1;
-		int limit=10;
-		
-		if(request.getParameter("page")!=null){
-			page=Integer.parseInt(request.getParameter("page"));
-		}
-		
-		int listcount=boarddao.getListCount(); //ÃÑ ¸®½ºÆ® ¼ö¸¦ ¹Þ¾Æ¿È.
-		boardlist = boarddao.getBoardList(page,limit); //¸®½ºÆ®¸¦ ¹Þ¾Æ¿È.
-		
-		//ÃÑ ÆäÀÌÁö ¼ö.
-   		int maxpage=(int)((double)listcount/limit+0.95); //0.95¸¦ ´õÇØ¼­ ¿Ã¸² Ã³¸®.
-   		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö(1, 11, 21 µî...)
-   		int startpage = (((int) ((double)page / 10 + 0.9)) - 1) * 10 + 1;
-   		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö.(10, 20, 30 µî...)
-   		int endpage = maxpage;
-   		
-   		if (endpage>startpage+10-1) endpage=startpage+10-1;
-   		
-   		request.setAttribute("page", page);		  //ÇöÀç ÆäÀÌÁö ¼ö.
-   		request.setAttribute("maxpage", maxpage); //ÃÖ´ë ÆäÀÌÁö ¼ö.
-   		request.setAttribute("startpage", startpage); //ÇöÀç ÆäÀÌÁö¿¡ Ç¥½ÃÇÒ Ã¹ ÆäÀÌÁö ¼ö.
-   		request.setAttribute("endpage", endpage);     //ÇöÀç ÆäÀÌÁö¿¡ Ç¥½ÃÇÒ ³¡ ÆäÀÌÁö ¼ö.
-		request.setAttribute("listcount",listcount); //±Û ¼ö.
-		request.setAttribute("boardlist", boardlist);
-		
-		ActionForward forward= new ActionForward();
-	   	forward.setRedirect(false);
-   		forward.setPath("./board/qna_board_list.jsp");
-   		return forward;
-	 }
- }
+public class BoardListAction implements Action {
+   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      BoardDAO boarddao = new BoardDAO();
+      List boardlist = new ArrayList();
+
+      int page = 1;
+      int limit = 10;
+      request.setCharacterEncoding("UTF-8");
+      response.setContentType("text/html; charset=UTF-8");
+
+      if (request.getParameter("page") != null) {
+         page = Integer.parseInt(request.getParameter("page"));
+      }
+
+      String types = request.getParameter("types");
+      String search_val = request.getParameter("search_val");
+
+      System.out.println("BoardListAction í…ŒìŠ¤íŠ¸1: " + types + "/" + search_val);
+      int listcount = 0;
+      
+      if (request.getParameter("types") != null) {
+         System.out.println("BoardListAction í…ŒìŠ¤íŠ¸2: " + types + "/" + search_val);
+         listcount = boarddao.getListCount(types, search_val);
+         boardlist = boarddao.getBoardList(page, limit, types, search_val);
+      } else {
+         System.out.println("BoardListAction í…ŒìŠ¤íŠ¸3: ");
+         listcount = boarddao.getListCount();
+         boardlist = boarddao.getBoardList(page, limit); 
+      }
+   
+      int maxpage = (int) ((double) listcount / limit + 0.95); 
+   
+      int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+
+      int endpage = maxpage;
+
+      if (endpage > startpage + 10 - 1)
+         endpage = startpage + 10 - 1;
+
+      request.setAttribute("page", page); 
+      request.setAttribute("maxpage", maxpage); 
+      request.setAttribute("startpage", startpage); 
+      request.setAttribute("endpage", endpage);
+      request.setAttribute("listcount", listcount); 
+      request.setAttribute("boardlist", boardlist);
+
+      ActionForward forward = new ActionForward();
+      forward.setRedirect(false);
+      forward.setPath("./board/qna_board_list.jsp");
+      return forward;
+   }
+}
