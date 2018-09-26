@@ -10,6 +10,8 @@ import net.board.db.BoardBean;
 
 public class BoardAddAction implements Action {
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		
+		request.setCharacterEncoding("UTF-8");
 		BoardDAO boarddao=new BoardDAO();
 	   	BoardBean boarddata=new BoardBean();
 	   	ActionForward forward=new ActionForward();
@@ -30,7 +32,7 @@ public class BoardAddAction implements Action {
    			multi=new MultipartRequest(request,
    					realFolder,
    					fileSize,
-   					"euc-kr",
+   					"UTF-8",
    					new DefaultFileRenamePolicy());
    			
    			boarddata.setBOARD_NAME(multi.getParameter("BOARD_NAME"));
@@ -43,10 +45,10 @@ public class BoardAddAction implements Action {
 	   		result=boarddao.boardInsert(boarddata);
 	   		
 	   		if(result==false){
-	   			System.out.println("°Ô½ÃÆÇ µî·Ï ½ÇÆÐ");
+	   			System.out.println("ê¸€ì¶”ê°€ ì‹¤íŒ¨");
 	   			return null;
 	   		}
-	   		System.out.println("°Ô½ÃÆÇ µî·Ï ¿Ï·á");
+	   		System.out.println("ê¸€ì¶”ê°€ ì„±ê³µ");
 	   		
 	   		forward.setRedirect(true);
 	   		forward.setPath("./BoardList.bo");

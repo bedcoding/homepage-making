@@ -158,7 +158,73 @@ public class BoardDAO {
 		return false;
 	}
 	
-	
+	public BoardBean getPrev(int num) {
+	      // TODO Auto-generated method stub
+	      BoardBean board = null;
+	      try {
+	         pstmt = con.prepareStatement(
+	               "SELECT board_num, board_subject FROM board WHERE board_num IN ((SELECT MIN(board_num) FROM board  WHERE board_num >?))");
+	         pstmt.setInt(1, num);
+
+	         rs = pstmt.executeQuery();
+
+	         if (rs.next()) {
+	            board = new BoardBean();
+	            board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+	            board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+	            
+	         }
+	         return board;
+	      } catch (Exception ex) {
+	         System.out.println("getPrev 에러 : " + ex);
+	      } finally {
+	         if (rs != null)
+	            try {
+	               rs.close();
+	            } catch (SQLException ex) {
+	            }
+	         if (pstmt != null)
+	            try {
+	               pstmt.close();
+	            } catch (SQLException ex) {
+	            }
+	      }
+	      return null;
+	   }
+	   
+	   public BoardBean getNext(int num) {
+	      // TODO Auto-generated method stub
+	      BoardBean board = null;
+	      try {
+	         pstmt = con.prepareStatement(
+	               "SELECT board_num, board_subject FROM board WHERE board_num IN ((SELECT MAX(board_num) FROM board  WHERE board_num < ?))");
+	         pstmt.setInt(1, num);
+
+	         rs = pstmt.executeQuery();
+
+	         if (rs.next()) {
+	            board = new BoardBean();
+	            board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+	            board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+	            
+	         }
+	         return board;
+	      } catch (Exception ex) {
+	         System.out.println("getNext 에러 : " + ex);
+	      } finally {
+	         if (rs != null)
+	            try {
+	               rs.close();
+	            } catch (SQLException ex) {
+	            }
+	         if (pstmt != null)
+	            try {
+	               pstmt.close();
+	            } catch (SQLException ex) {
+	            }
+	      }
+	      return null;
+	   }
 	
 	//글 수정.
 	public boolean boardModify(BoardBean modifyboard) throws Exception{
@@ -222,6 +288,131 @@ public class BoardDAO {
 			System.out.println("isBoardWriter 에러 : "+ex);
 		}
 		return false;
+	}
+	
+	
+	
+	// 검색
+	public int getListCount(String types, String search_val) {
+		int x = 0;
+
+		try {
+			if (types.equals("0")) {// 전체
+				pstmt = con.prepareStatement(
+						"select count(*) from board where board_subject like ? or board_content like ? or board_name like ?");
+				pstmt.setString(1, '%' + search_val + '%');
+				pstmt.setString(2, '%' + search_val + '%');
+				pstmt.setString(3, '%' + search_val + '%');
+			} else if (types.equals("1")) {// 제목
+				pstmt = con.prepareStatement("select count(*) from board where board_subject like ?");
+				pstmt.setString(1, '%' + search_val + '%');
+			} else if (types.equals("2")) {// 내용
+				pstmt = con.prepareStatement("select count(*) from board where board_content like ?");
+				pstmt.setString(1, '%' + search_val + '%');
+			}
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			System.out.println("getListCount 에러: " + ex);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
+	
+	
+	
+	
+	// 검색2
+	public List getBoardList(int page, int limit, String types, String search_val) {
+		// 전체 + 제목 + 내용
+		System.out.println("글목록2");
+
+		String board_list_sql = "";
+		if (types.equals("0")) {
+			board_list_sql = "select * from " + "(select rownum rnum,BOARD_NUM,BOARD_NAME,BOARD_SUBJECT,"
+					+ "BOARD_CONTENT, BOARD_FILE,"
+					+ "BOARD_DATE from (select * from board where board_subject like ? or board_content like ? or board_name like ? order by BOARD_NUM DESC))"
+					+
+					// "(select * from board order by BOARD_RE_REF desc,BOARD_RE_SEQ asc)) "+
+					"where rnum>=? and rnum<=?";
+		} else if (types.equals("1")) {
+			board_list_sql = "select * from " + "(select rownum rnum,BOARD_NUM,BOARD_NAME,BOARD_SUBJECT,"
+					+ "BOARD_CONTENT, BOARD_FILE,"
+					+ "BOARD_DATE from (select * from board where board_subject like ? order by BOARD_NUM DESC))" +
+					// "(select * from board order by BOARD_RE_REF desc,BOARD_RE_SEQ asc)) "+
+					"where rnum>=? and rnum<=?";
+		} else if (types.equals("2")) {
+			board_list_sql = "select * from " + "(select rownum rnum,BOARD_NUM,BOARD_NAME,BOARD_SUBJECT,"
+					+ "BOARD_CONTENT, BOARD_FILE,"
+					+ "BOARD_DATE from (select * from board where board_content like ? order by BOARD_NUM DESC))" +
+					// "(select * from board order by BOARD_RE_REF desc,BOARD_RE_SEQ asc)) "+
+					"where rnum>=? and rnum<=?";
+		}
+
+		List list = new ArrayList();
+
+		int startrow = (page - 1) * 10 + 1; // 읽기 시작할 row 번호.
+		int endrow = startrow + limit - 1; // 읽을 마지막 row 번호.
+		try {
+			pstmt = con.prepareStatement(board_list_sql);
+
+			if (types.equals("0")) {
+				pstmt.setString(1, '%' + search_val + '%');
+				pstmt.setString(2, '%' + search_val + '%');
+				pstmt.setString(3, '%' + search_val + '%');
+				pstmt.setInt(4, startrow);
+				pstmt.setInt(5, endrow);
+			} else if (types.equals("1")) {
+				pstmt.setString(1, '%' + search_val + '%');
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+			} else if (types.equals("2")) {
+				pstmt.setString(1, '%' + search_val + '%');
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+			}
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				BoardBean board = new BoardBean();
+				board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+				board.setBOARD_NAME(rs.getString("BOARD_NAME"));
+				board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+				board.setBOARD_CONTENT(rs.getString("BOARD_CONTENT"));
+				board.setBOARD_FILE(rs.getString("BOARD_FILE"));
+				board.setBOARD_DATE(rs.getDate("BOARD_DATE"));
+				list.add(board);
+			}
+
+			return list;
+		} catch (Exception ex) {
+			System.out.println("getBoardList 에러 : " + ex);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return null;
 	}
 
 }

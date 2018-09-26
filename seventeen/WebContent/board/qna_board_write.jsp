@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="net.board.db.BoardBean"%> 
+<%
+	String id=(String)session.getAttribute("loggedID");
+	BoardBean board=(BoardBean)request.getAttribute("boarddata");
+	System.out.println("id 들어왔나 체크: "+id);
+%>
 
 
 
@@ -26,20 +31,6 @@
 
  </head>
 
- <!--게시판넣기-->
-<!-- 
-<script language='javascript' type='text/javascript'>
-
-		//<![CDATA[
-		function doResize(id) 
-		{ 
-		var obj = (typeof(id)=='string')?document.getElementById(id):id; 
-		obj.height = obj.contentWindow.document.body.scrollHeight; 
-		}
-		//]]> 
-	</script>
-
- --> 
  
  <body>
  <!--Wrap-->
@@ -50,16 +41,33 @@
 	<!--Header-->
 	<div id="header_new">
 		<ul class="m_menu">
-			<li><img src="image/common/menu/menu_left.jpg" border="0" alt=""></li>
-			<li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/profile.html"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/notice_new.html"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/schedule.html"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/vote_new.html?cate_idx=42"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/fanboard.html"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/from_st.html"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-			<li><a href="../asp/logout.html"><img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
-			<li><img src="image/common/menu/menu_right.jpg" border="0" alt=""></li>
+			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="Profile.bo"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
+			<li><a href="Vote.bo"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
 		</ul>
 	</div><!--END Header-->
 	<iframe name="action_ifrm" id="action_ifrm" width="0" height="0" frameborder="0" ></iframe>
@@ -103,7 +111,7 @@ function spamImageChange(){
  				<tr>
 					<th><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
 					<td>
-						<input type="text" name="BOARD_NAME" value="" class="write_bar_close">
+						<input type="text" name="BOARD_NAME" value="<%=id %>" readonly class="write_bar_close">
 					</td>
 					<th><img src="board_img/t_pass.png" width="41" height="14" border="0" alt="비밀번호"></th>
 					<td><input type="password" class="write_bar" name="BOARD_PASS" value="" />				

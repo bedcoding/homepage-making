@@ -60,6 +60,13 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Index.bo")) {
+			action = new IndexAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/BoardDetailAction.bo")) {
 			action = new BoardDetailAction();
 			try {
@@ -67,7 +74,17 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/Profile.bo")) {
+			forward = new ActionForward();	//DB접근 안하고(액션클래스 안들어가고 바로 뷰페이지로) 그냥 들어가는거라 아무거나 집어넣음
+			forward.setRedirect(false);
+			forward.setPath("./profile.jsp");
+		} else if (command.equals("/Vote.bo")) {
+			forward = new ActionForward();	//DB접근 안하고(액션클래스 안들어가고 바로 뷰페이지로) 그냥 들어가는거라 아무거나 집어넣음
+			forward.setRedirect(false);
+			forward.setPath("./vote.jsp");
 		}
+		
+		
 
 		if (forward.isRedirect()) {
 			response.sendRedirect(forward.getPath());
