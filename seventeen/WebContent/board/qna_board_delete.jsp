@@ -1,31 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
+
 <%
-	int num=Integer.parseInt(request.getParameter("num"));
+   int num=Integer.parseInt(request.getParameter("num"));
 %>
 <html>
 <head>
-<title>MVC °Ô½ÃÆÇ</title>
+<title> SEVENTEEN Official website </title>
+     <meta name="Author" content="minee">
+     <meta name="Publisher" content="MyelHub">
+     <meta name="Description" content="">
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=9">
+     <link type="text/css" rel="stylesheet" href="css/default.css" />
+ <!--     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
+  <!--    <script type="text/javascript" src="/js/doorer.js"></script> -->
+   <script type="text/javascript">
+   function windowclose(){
+      window.close();
+   }
+   </script>
+   
 </head>
+
+
+
 <body>
+<!--Container-->
+
+
 <form name="deleteForm" action="./BoardDeleteAction.bo?num=<%=num %>" 
-	method="post">
-<table border=1>
+   method="post">
+
+   <br>
+<table border="1">
 <tr>
-	<td>
-		<font size=2>±Û ºñ¹Ð¹øÈ£ : </font>
-	</td>
-	<td>
-		<input name="BOARD_PASS" type="password">
-	</td>
+   <td>
+      <font size=2>ê¸€ ë¹„ë°€ë²ˆí˜¸ : </font>
+   </td>
+   <td>
+      <input name="BOARD_PASS" type="password">
+   </td>
 </tr>
-<tr>
-	<td colspan=2 align=center>
-		<a href="javascript:deleteForm.submit()">»èÁ¦</a>
-		&nbsp;&nbsp;
-		<a href="javascript:history.go(-1)">µ¹¾Æ°¡±â</a>
-	</td>
+<tr >
+   <td colspan=2 align=center>
+      <a href="javascript:deleteForm.submit()"><img src="./image/sub/pop_regist.gif" border="0" alt=""></a>
+      &nbsp;&nbsp;
+      <a href="javascript:windowclose();"><img src="./image/sub/pop_cancel.gif" border="0" alt=""></a>
+   </td>
 </tr>
 </table>
 </form>
+
+
 </body>
+   
+   
+   
+   
 </html>

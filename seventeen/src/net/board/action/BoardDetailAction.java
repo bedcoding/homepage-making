@@ -22,7 +22,7 @@ import net.board.db.BoardBean;
          if(boarddata2!=null) {
             request.setAttribute("prev", boarddata2.getBOARD_NUM());
             request.setAttribute("prevSub", boarddata2.getBOARD_SUBJECT());
-            System.out.println("디버기이이잉"+request.getAttribute("prevSub"));
+            System.out.println("BoardDetailAction boarddata2 접근:"+request.getAttribute("prevSub"));
             System.out.println("details>>>"+boarddata2.getBOARD_NUM());
             System.out.println("details>>>"+boarddata2.getBOARD_SUBJECT());
          }
@@ -30,7 +30,7 @@ import net.board.db.BoardBean;
          if(boarddata3!=null) {
             request.setAttribute("next", boarddata3.getBOARD_NUM());
             request.setAttribute("nextSub", boarddata3.getBOARD_SUBJECT());
-            System.out.println("디버기이이잉"+request.getAttribute("nextSub"));
+            System.out.println("BoardDetailAction boarddata3 접근:"+request.getAttribute("nextSub"));
             System.out.println("details>>>"+boarddata3.getBOARD_NUM());
             System.out.println("details>>>"+boarddata3.getBOARD_SUBJECT());
          }

@@ -8,21 +8,21 @@
 int p = 1;
 if (request.getAttribute("prev") != null) {
    p = (Integer) request.getAttribute("prev");
-   System.out.println("CHECK(request p)------->" + p);
+   System.out.println("CHECK(request)------->" + p);
 }
-String s = "음음음";
+String s = "board_view 테스트";
 
 s = (String) request.getAttribute("prevSub");
-System.out.println("CHECK(request s)------->" + s);
+System.out.println("CHECK(request)------->" + s);
 
-int n =1; String sn = "음음음음";
+int n =1; String sn = "board_view 테스트2";
 
 if(request.getAttribute("next")!=null){
    n = (Integer) request.getAttribute("next");
-   System.out.println("CHECK(request n)------->" + n);
+   System.out.println("CHECK(request)------->" + n);
 }
 sn = (String) request.getAttribute("nextSub");
-System.out.println("CHECK(request sn)------->" + sn);
+System.out.println("CHECK(request)------->" + sn);
 
 %>
 
@@ -40,6 +40,10 @@ System.out.println("CHECK(request sn)------->" + sn);
   <script type="text/javascript" src="/js/doorer.js"></script>
  </head>
 
+
+
+
+
  <!--게시판넣기-->
 <script language='javascript' type='text/javascript'>
 
@@ -50,40 +54,55 @@ System.out.println("CHECK(request sn)------->" + sn);
       obj.height = obj.contentWindow.document.body.scrollHeight; 
       }
       //]]> 
+      
+      
+      
+      
+    //글삭제하기 윈도우창
+      function openwin_del()
+      {
+         var url = "BoardDelete.bo?num=<%=board.getBOARD_NUM() %>";
+        
+         //글삭제 jsp열
+         window.open(url, "비밀번호 입력", "width=450 height=100");  
+      }
    </script>
 
- <body
- 
- >
+ <body>
  <!--Wrap-->
  <div id="wrap">
- 
-   <!--div class="black_bg">
-      <div class="black_bg_in">
-         <p><img src="image/main/poster_nt.jpg" width="980" height="728" border="0" alt=""></p>
-      </div>
-   </div-->
-
       
    <p class="m_top"><img src="image/main/main_blue.jpg"border="0" alt=""></p>
    <!--Header-->
    <div id="header_new">
       <ul class="m_menu">
-         <li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
-         <li><a href="/"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
-         <!--li><a href="./index_02.jsp"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li-->
-         <li><a href="./profile.jsp"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
-         <!--li><a href="javascript:alert('준비중입니다');"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li-->
-         <li><a href="./notice_new.jsp"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
-         <li><a href="./schedule.jsp"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>
-         <li><a href="./vote_new.jsp"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>
-         <!--li><a href="javascript:alert('준비중입니다');"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li-->
-         <li><a href="./fanboard.jsp"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
-         <li><a href="./from_st.jsp"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
-         
-            <li><a href="./login_new.me"><img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
-         
-         <li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
+			<li><img src="image/common/menu/menu_left.jpg"border="0" alt=""></li>
+			<li><a href="Index.bo"><img src="image/common/menu/menu01.jpg" border="0" alt=""></a></li>
+			<li><a href="Profile.bo"><img src="image/common/menu/menu02.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo"><img src="image/common/menu/menu03.jpg" border="0" alt=""></a></li>
+			<li><a href="ShowSc.sc"><img src="image/common/menu/menu04.jpg" border="0" alt=""></a></li>			
+			<li><a href="Vote.bo"><img src="image/common/menu/menu05.jpg" border="0" alt=""></a></li>			
+			<li><a href="BoardList.bo3"><img src="image/common/menu/lnb01.jpg" border="0" alt=""></a></li>
+			<li><a href="BoardList.bo4"><img src="image/common/menu/lnb02.jpg" border="0" alt=""></a></li>
+
+				<%
+					String ida = null;
+					ida = (String) session.getAttribute("loggedID");
+					System.out.println("세션에 저장된 아이디: " + ida);
+					if (ida == null) 
+					{
+				%>		<li><a href="login_new.me">
+						<img src="image/common/menu/lnb03.jpg" border="0" alt=""></a></li>
+				<%
+					} else {
+				%>
+						<li><a href="logoutaction.me">
+						<img src="image/common/menu/lnb03_out.jpg" border="0" alt=""></a></li>
+				<%
+					}
+				%>
+			
+			<li><img src="image/common/menu/menu_right.jpg"border="0" alt=""></li>
       </ul>
    </div><!--END Header-->
    
@@ -96,9 +115,12 @@ System.out.println("CHECK(request sn)------->" + sn);
 		
 		
 <script type="text/javascript" src="lib/js/validation/validation.js"></script>
+
+<!-- 
 <script type="text/javascript">
 
-	$(function(){
+// 자바스크립트로 게시글 수정/삭제를 구현한 것 (하지만 우리는 MVC2 패턴으로 할 것이므로 아예 날림) 
+ 	$(function(){
 		$("#write_img").css("cursor","pointer").bind("click",function(){
 			go_write(1);
 		})
@@ -164,8 +186,8 @@ System.out.println("CHECK(request sn)------->" + sn);
 		}	
 	}
 
-</script>
-
+ </script>
+ -->
 
 <link type="text/css" rel="stylesheet" href="css/board.css" />
 
@@ -231,7 +253,7 @@ System.out.println("CHECK(request sn)------->" + sn);
 							<!-- <img src="board_img/file/jpg.gif"> -->
 							
 					</td>
-					<th style="padding-left:10px;" ><img src="../board_img/t_02.png" width="31" height="14" border="0" alt="작성인"></th>
+					<th style="padding-left:10px;" ><img src="board_img/t_02.png" width="31" height="14" border="0" alt="작성자"></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_NAME() %></td>
 					<th><img src="board_img/t_04.png" border="0" alt="등록일 "></th>
 					<td class="board_data" style="padding-left:10px;" ><%=board.getBOARD_DATE() %></td>
@@ -333,7 +355,7 @@ System.out.println("CHECK(request sn)------->" + sn);
 				  <tr>
 					<td colspan="2" height="23" align="center">
 						<input type="image" src="image/sub/pop_regist.gif" border=0  value="submit" style="padding-bottom:15px" onclick="pwd_check();" style="vertical-align:top;">&nbsp;
-						<a onclick="$('#pwd_chk').hide();$('#chk_pwd').val('');" style="cursor:pointer;" ><img src="../image/sub/pop_cancel.gif" border="0"style="vertical-align:top;"  ></a>
+						<a onclick="$('#pwd_chk').hide();$('#chk_pwd').val('');" style="cursor:pointer;" ><img src="image/sub/pop_cancel.gif" border="0"style="vertical-align:top;"  ></a>
 					</td>
 				  </tr>
 			  </table></td>
@@ -341,12 +363,35 @@ System.out.println("CHECK(request sn)------->" + sn);
 		  </table>
 		  </div>
 		 </div>
-		<div class="board_btn">
-			<p class="board_fLeft">
+		 
+		 
+				<%
+					System.out.println("글쓰기 버튼 세션에 저장된 아이디 확인: " + ida);
+					
+					if(ida!=null && ida.equals("admin")) 
+					{	
+				%> 		
+						<div class="board_btn">
+							<p class="board_fLeft">
+								<input type="button" class="board_bt_style01" title="수정하기" value="수정하기" name="" id="write_img" onClick="location='./BoardModify.bo?num=<%=board.getBOARD_NUM() %>' " />
+								<input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="openwin_del()"/>
+								<%-- <input type="button" class="board_bt_style02" title="삭제하기" value="삭제하기" name="" id="del_img" onClick="location='./BoardDelete.bo?num=<%=board.getBOARD_NUM() %>' "/> --%>
+							</p>
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
+						</div>
+				<%  } 
 				
-			</p>
-			<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo'"/></p>
-		</div>
+					else 
+					{
+				%>
+						<div class="board_btn">
+							<p class="board_fRight"><input type="button" class="board_bt_style01" title="목록으로" value="목록으로" name="" onClick="location='./BoardList.bo2'"/></p>
+						</div>
+				<%
+				 	}				  
+				%>
+
+		
 		<br /><br />
  </div><!--END Board-->
 <form name="del_Frm" id="del_Frm" method="post" >

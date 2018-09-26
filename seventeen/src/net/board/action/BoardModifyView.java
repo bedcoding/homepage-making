@@ -9,7 +9,7 @@ import net.board.db.BoardBean;
 public class BoardModifyView implements Action {
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 	ActionForward forward = new ActionForward();
-		 	request.setCharacterEncoding("euc-kr");
+		 	request.setCharacterEncoding("UTF-8");
 	   		
 			BoardDAO boarddao=new BoardDAO();
 		   	BoardBean boarddata=new BoardBean();
@@ -18,10 +18,10 @@ public class BoardModifyView implements Action {
 		   	boarddata=boarddao.getDetail(num);
 		   	
 		   	if(boarddata==null){
-		   		System.out.println("(¼öÁ¤)»ó¼¼º¸±â ½ÇÆÐ");
+		   		System.out.println("BoardModifyView ì‹¤íŒ¨");
 		   		return null;
 		   	}
-		   	System.out.println("(¼öÁ¤)»ó¼¼º¸±â ¼º°ø");
+		   	System.out.println("BoardModifyView ì„±ê³µ");
 		   	
 		   	request.setAttribute("boarddata", boarddata);
 		   	forward.setRedirect(false);

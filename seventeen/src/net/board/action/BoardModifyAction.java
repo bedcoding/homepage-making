@@ -10,7 +10,7 @@ import net.board.db.*;
  public class BoardModifyAction implements Action {
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
 	 	throws Exception{
-		 request.setCharacterEncoding("euc-kr");
+		 request.setCharacterEncoding("UTF-8");
 		 ActionForward forward = new ActionForward();
 		 boolean result = false;
 		 
@@ -21,10 +21,10 @@ import net.board.db.*;
 		 
 		 boolean usercheck=boarddao.isBoardWriter(num, request.getParameter("BOARD_PASS"));
 		 if(usercheck==false){
-		   		response.setContentType("text/html;charset=euc-kr");
+		   		response.setContentType("text/html;charset=UTF-8");
 		   		PrintWriter out=response.getWriter();
 		   		out.println("<script>");
-		   		out.println("alert('¼öÁ¤ÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.');");
+		   		out.println("alert('ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤');");
 		   		out.println("location.href='./BoardList.bo';");
 		   		out.println("</script>");
 		   		out.close();
@@ -38,10 +38,10 @@ import net.board.db.*;
 			 
 			 result = boarddao.boardModify(boarddata);
 			 if(result==false){
-		   		System.out.println("°Ô½ÃÆÇ ¼öÁ¤ ½ÇÆÐ");
+		   		System.out.println("ìˆ˜ì • ì•¡ì…˜ ì‹¤íŒ¨");
 		   		return null;
 		   	 }
-		   	 System.out.println("°Ô½ÃÆÇ ¼öÁ¤ ¿Ï·á");
+		   	 System.out.println("ìˆ˜ì • ì•¡ì…˜ ì„±ê³µ");
 		   	 
 		   	 forward.setRedirect(true);
 		   	 forward.setPath("./BoardDetailAction.bo?num="+boarddata.getBOARD_NUM());
